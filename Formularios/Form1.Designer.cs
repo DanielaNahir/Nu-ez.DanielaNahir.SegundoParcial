@@ -1,6 +1,6 @@
 ﻿namespace Formularios
 {
-    partial class FrmHistorial
+    partial class Form1
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,34 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lstHistorial = new ListBox();
-            SuspendLayout();
-            // 
-            // lstHistorial
-            // 
-            lstHistorial.FormattingEnabled = true;
-            lstHistorial.ItemHeight = 15;
-            lstHistorial.Location = new Point(1, 3);
-            lstHistorial.Name = "lstHistorial";
-            lstHistorial.Size = new Size(203, 214);
-            lstHistorial.TabIndex = 0;
-            // 
-            // FrmHistorial
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(204, 220);
-            Controls.Add(lstHistorial);
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "FrmHistorial";
-            Text = "Form1";
-            Load += FrmHistoria_Load;
-            ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "Form1";
         }
 
         #endregion
-
-        private ListBox lstHistorial;
     }
 }
