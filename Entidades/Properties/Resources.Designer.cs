@@ -61,7 +61,7 @@ namespace Entidades.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Data Source=localhost\SQLEXPRESS;Initial Catalog=NuñezDanielaNahir_SegundoParcial;Integrated Security=True.
+        ///   Busca una cadena traducida similar a Data Source=localhost\SQLEXPRESS;Initial Catalog=NuñezDanielaNahir_SegundoParcial;Integrated Security=True;Trust Server Certificate=True.
         /// </summary>
         internal static string conexion {
             get {

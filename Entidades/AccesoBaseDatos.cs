@@ -33,9 +33,9 @@ namespace Entidades
                 this.conexion.Open();
                 result = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                
             }
             finally
             {
