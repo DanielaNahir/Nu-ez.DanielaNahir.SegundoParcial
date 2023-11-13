@@ -124,6 +124,8 @@ namespace Entidades
         /// <returns>Boleano</returns>
         public abstract bool DeterminarAgresividad();
 
+        //public abstract bool ParsearEnumerado(string valorEnumerado);
+
         #endregion
 
         #region PROPIEDADES

@@ -97,6 +97,44 @@ namespace Entidades
             }
             return agresividad;
         }
+
+        /// <summary>
+        /// Parsea y deternima el valor de la raza de perro recibido
+        /// </summary>
+        /// <returns>Un valor del enumerado ERazaPerro que representa la raza del perro</returns>
+
+        public bool ParsearEnumerado(string raza)
+        {
+            bool result = true;
+            raza = raza.ToLower();
+
+            if (raza == "bulldog")
+            {
+                this.raza = ERazaPerro.Bulldog;
+            }
+            else if (raza == "caniche")
+            {
+                this.raza = ERazaPerro.Caniche;
+            }
+            else if (raza == "golden")
+            {
+                this.raza = ERazaPerro.Golden;
+            }
+            else if (raza == "labrador")
+            {
+                this.raza = ERazaPerro.Labrador;
+            }
+            else if (raza == "mestizo")
+            {
+                this.raza = ERazaPerro.Mestizo;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
         #endregion
 
         #region PROPIEDADES

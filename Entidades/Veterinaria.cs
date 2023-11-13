@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Entidades
 {
     /// <summary>
-    /// Clase que representa al una veterinaria
+    /// Clase que representa a una veterinaria
     /// </summary>
     public class Veterinaria
     {
