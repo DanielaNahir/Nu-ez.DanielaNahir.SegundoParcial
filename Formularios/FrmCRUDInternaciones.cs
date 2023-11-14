@@ -19,6 +19,7 @@ namespace Formularios
     public partial class FrmCRUDInternaciones : FrmListadoDatos
     {
         private Veterinaria veterinaria;
+        private AccesoDatosListaMascotas<Mascota> accesoDatos;
 
         /// <summary>
         /// Constructor de la clase
@@ -30,6 +31,7 @@ namespace Formularios
             this.LblText("Mascotas Internadas");
             this.CenterToScreen();
             this.veterinaria = veterinaria;
+            this.accesoDatos = new AccesoDatosListaMascotas<Mascota>("listaMascotasInternadas");
         }
 
         /// <summary>
@@ -66,6 +68,8 @@ namespace Formularios
             if (frmAgregarMascota.DialogResult == DialogResult.OK)
             {
                 this.veterinaria.ListaMascotasInternadas.Add(frmAgregarMascota.mascota);
+                if (this.accesoDatos.Agregar(frmAgregarMascota.mascota))
+                    MessageBox.Show("Mascota agregada");
                 this.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
             }
         }
@@ -98,6 +102,8 @@ namespace Formularios
                 if (frmMostrarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotasInternadas))
                 {
                     this.veterinaria.ListaMascotasInternadas.RemoveAt(indice);
+                    if (this.accesoDatos.Eliminar(frmMostrarMascota.mascota))
+                        MessageBox.Show("Mascota eliminada");
                     base.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
                 }
                 else

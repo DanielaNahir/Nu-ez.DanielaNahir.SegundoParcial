@@ -1,10 +1,1 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Veterinaria xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <ListaMascotas>
-    </ListaMascotas>
-    <ListaMascotasInternadas />
-    <ListaMedicosVeterinarios />
-    <ListaProductos />
-    <ListaTurnos />
-</Veterinaria>
+﻿<?xml version="1.0" encoding="utf-8"?><Veterinaria xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><ListaMascotas><Mascota xsi:type="Perro"><Nombre>Cuore</Nombre><NombreDueño>Daniela</NombreDueño><TipoMascota>Perro</TipoMascota><Edad>4</Edad><ApellidoDueño>Nuñez</ApellidoDueño><Raza>Mestizo</Raza><Muerde>false</Muerde></Mascota><Mascota xsi:type="Exotico"><Nombre>Nahia</Nombre><NombreDueño>Nahir</NombreDueño><TipoMascota>Exotico</TipoMascota><Edad>5</Edad><ApellidoDueño>Nuñez</ApellidoDueño><Animal>Cobayo</Animal><Alimento>Especial</Alimento></Mascota></ListaMascotas><ListaMascotasInternadas><Mascota xsi:type="Exotico"><Nombre>Nahia</Nombre><NombreDueño>Nahir</NombreDueño><TipoMascota>Exotico</TipoMascota><Edad>5</Edad><ApellidoDueño>Nuñez</ApellidoDueño><Animal>Cobayo</Animal><Alimento>Especial</Alimento></Mascota></ListaMascotasInternadas><ListaMedicosVeterinarios /><ListaProductos /><ListaTurnos /></Veterinaria>
