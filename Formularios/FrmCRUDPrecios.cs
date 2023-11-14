@@ -18,7 +18,7 @@ namespace Formularios
     public partial class FrmCRUDPrecios : FrmListadoDatos
     {
         private Veterinaria veterinaria;
-        private AccesoDatosProducto<Producto> baseDatosProducto;
+        private AccesoDatosProducto<Producto> accesoDatosProducto;
 
         /// <summary>
         /// Constructor de la clase
@@ -30,7 +30,7 @@ namespace Formularios
             this.CenterToScreen();
             base.LblText("Precios");
             this.veterinaria = veterinaria;
-            this.baseDatosProducto = new AccesoDatosProducto<Producto>();
+            this.accesoDatosProducto = new AccesoDatosProducto<Producto>();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Formularios
         /// <param name="e"></param>
         private void FrmCRUDPrecios_Load(object sender, EventArgs e)
         {
-            base.ActualizarVisor(this.baseDatosProducto.ObtenerTodosLosDatos());
+            base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
         }
 
         /// <summary>
@@ -69,12 +69,12 @@ namespace Formularios
                 if (!frmPrecio.producto.VerificarIgualdad(this.veterinaria.ListaProductos))
                 {
                     this.veterinaria += frmPrecio.producto;
-                    if (this.baseDatosProducto.Agregar(frmPrecio.producto))
+                    if (this.accesoDatosProducto.Agregar(frmPrecio.producto))
                         MessageBox.Show("Producto agregado");
                     else
                         MessageBox.Show("No pudo agregarse el producto");
 
-                    base.ActualizarVisor(this.baseDatosProducto.ObtenerTodosLosDatos());
+                    base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
                 }
                 else
                 {
@@ -108,10 +108,10 @@ namespace Formularios
             if (frmPrecio.DialogResult == DialogResult.OK)
             {
                 this.veterinaria.ListaProductos[indice] = frmPrecio.producto;
-                if (this.baseDatosProducto.Modificar(frmPrecio.producto))
+                if (this.accesoDatosProducto.Modificar(frmPrecio.producto))
                     MessageBox.Show("Producto modificado");
                 
-                base.ActualizarVisor(this.baseDatosProducto.ObtenerTodosLosDatos());
+                base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
             }
         }
 
@@ -143,9 +143,9 @@ namespace Formularios
                 if (frmPrecio.producto.VerificarIgualdad(this.veterinaria.ListaProductos))
                 {
                     this.veterinaria -=frmPrecio.producto;
-                    if (this.baseDatosProducto.Eliminar(frmPrecio.producto))
+                    if (this.accesoDatosProducto.Eliminar(frmPrecio.producto))
                         MessageBox.Show("Producto eliminado");
-                    base.ActualizarVisor(this.baseDatosProducto.ObtenerTodosLosDatos());
+                    base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
                 }
                 else
                 {
