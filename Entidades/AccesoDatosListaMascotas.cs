@@ -1,29 +1,49 @@
-﻿using System;
+﻿using Interfaces;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
-using Interfaces;
+using System.Threading.Tasks.Dataflow;
 
 namespace Entidades
 {
-    public class AccesoDatosProducto<T>: AccesoDatos,IBaseDeDatosVeterinaria<T> where T : Producto
+    public class AccesoDatosListaMascotas<T> : AccesoDatos, IBaseDeDatosVeterinaria<T> where T : Mascota
     {
-        //private SqlConnection conexion;
-        //private static string cadena_conexion;
-        //private SqlCommand comando;
-        //private SqlDataReader lector;
+        private SqlConnection conexion;
+        private static string cadena_conexion;
+        private SqlCommand comando;
+        private SqlDataReader lector;
 
-        //static AccesoDatosProducto()
-        //{
-        //    AccesoDatosProducto<T>.cadena_conexion = Properties.Resources.conexion;
-        //    //AccesoBaseDatos.cadena_conexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=NuñezDanielaNahir_SegundoParcial;Integrated Security=True";
-        //}
-        //public AccesoDatosProducto()
-        //{
-        //    this.conexion = new SqlConnection(AccesoDatosProducto<T>.cadena_conexion);
-        //}
+        static AccesoDatosListaMascotas()
+        {
+            AccesoDatosListaMascotas<T>.cadena_conexion = Properties.Resources.conexion;
+        }
+        public AccesoDatosListaMascotas()
+        {
+            this.conexion = new SqlConnection(AccesoDatosListaMascotas<T>.cadena_conexion);
+        }
+
+        public bool PruebaConexion()
+        {
+            bool result = false;
+            try
+            {
+                this.conexion.Open();
+                result = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    this.conexion.Close();
+            }
+            return result;
+        }
 
         public List<T> ObtenerTodosLosDatos()
         {
@@ -133,7 +153,6 @@ namespace Entidades
                 int filas = this.comando.ExecuteNonQuery();
                 if (filas == 1)
                     result = true;
-
             }
             //catch (Exception ex)
             //{
@@ -144,9 +163,8 @@ namespace Entidades
                 if (this.conexion.State == System.Data.ConnectionState.Open)
                     this.conexion.Close();
             }
-
             return result;
         }
-
     }
+}
 }
