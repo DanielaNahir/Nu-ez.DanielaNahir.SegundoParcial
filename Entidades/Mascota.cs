@@ -8,7 +8,7 @@ namespace Entidades
     [XmlInclude(typeof(Gato))]
     [XmlInclude(typeof(Exotico))]
     
-    public abstract class Mascota
+    public abstract class Mascota 
     {
         protected string nombre;
         protected EMascota tipoMascota;

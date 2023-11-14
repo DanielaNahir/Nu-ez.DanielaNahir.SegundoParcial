@@ -20,6 +20,7 @@ namespace Entidades
         }
         public AccesoDatos()
         {
+            this.comando = new SqlCommand();
             this.conexion = new SqlConnection(AccesoDatos.cadena_conexion);
         }
 

@@ -10,6 +10,7 @@ namespace Formularios
     public partial class FrmCRUDHistoriasClinicas : FrmListadoDatos
     {
         private Veterinaria veterinaria;
+        private AccesoDatosListaMascotas<Mascota> accesoDatos;
 
         /// <summary>
         /// Constructor de la clase
@@ -21,6 +22,7 @@ namespace Formularios
             base.LblText("Historias clinicas");
             this.CenterToScreen();
             this.veterinaria = veterinaria;
+            this.accesoDatos = new AccesoDatosListaMascotas<Mascota>("listaMascotas");
         }
 
         /// <summary>
@@ -72,7 +74,10 @@ namespace Formularios
             frm1.ShowDialog();
             if (frm1.DialogResult == DialogResult.OK)
             {
+
                 this.veterinaria.ListaMascotas[indice] = frm1.mascota;
+                if (this.accesoDatos.Modificar(frm1.mascota))
+                    MessageBox.Show("Mascota modificada");
                 base.ActualizarVisor(this.veterinaria.ListaMascotas);
             }
         }
@@ -104,6 +109,8 @@ namespace Formularios
                 if (frmMostrarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotas))
                 {
                     this.veterinaria -= frmMostrarMascota.mascota;
+                    if (this.accesoDatos.Eliminar(frmMostrarMascota.mascota))
+                        MessageBox.Show("Mascota eliminada");
                     base.ActualizarVisor(this.veterinaria.ListaMascotas);
                 }
                 else
@@ -127,6 +134,8 @@ namespace Formularios
             {
                 if (!frmAgregarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotas))
                 {
+                    if (this.accesoDatos.Agregar(frmAgregarMascota.mascota))
+                        MessageBox.Show("Mascota agregada");
                     this.veterinaria += frmAgregarMascota.mascota;
                     base.ActualizarVisor(this.veterinaria.ListaMascotas);
                 }

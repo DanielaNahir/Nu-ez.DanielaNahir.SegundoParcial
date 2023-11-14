@@ -109,7 +109,6 @@ namespace Entidades
             try
             {
                 this.comando = new SqlCommand();
-                //this.comando.Parameters.AddWithValue("@nombre", prod.Nombre);
 
                 this.comando.CommandType = System.Data.CommandType.Text;
                 this.comando.CommandText = $"DELETE from productos WHERE nombre = '{prod.Nombre}'";
