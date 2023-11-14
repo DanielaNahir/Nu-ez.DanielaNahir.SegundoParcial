@@ -106,6 +106,7 @@ namespace Formularios
         /// <param name="e"></param>
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            this.SerializarXML();
             DialogResult respuesta = MessageBox.Show("¿Está seguro de salir de la apricación?\nLos datos " +
                                      "que no haya guardado se perderan", "Atención!", MessageBoxButtons.YesNo);
 
@@ -247,27 +248,6 @@ namespace Formularios
                 {
                     this.lstVisor.Items.Add(turn.Mostrar());
                 }
-            }
-        }
-
-        /// <summary>
-        /// Serializa los datos en el archivo Veterinaria.xml
-        /// </summary>
-        private void GuardarBaseDeDatos()
-        {
-            string path = Environment.CurrentDirectory;
-            try
-            {
-                using (XmlTextWriter writer = new XmlTextWriter(path += @"..\..\..\..\Veterinaria.xml", System.Text.Encoding.UTF8))
-                {
-                    XmlSerializer serial = new XmlSerializer(typeof(Veterinaria));
-                    serial.Serialize(writer, this.veterinaria);
-                }
-                MessageBox.Show("Datos guardados con exito");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
     }
