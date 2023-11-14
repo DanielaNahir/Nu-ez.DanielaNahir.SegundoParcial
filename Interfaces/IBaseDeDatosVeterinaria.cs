@@ -3,11 +3,13 @@
 
     public interface IBaseDeDatosVeterinaria<T>
     {
-        List<T> ObtenerTodosLosDatos();
+        //List<T> ObtenerTodosLosDatos();
         //T ObtenerPorId(int id);
-        bool Agregar(T entidad);
-        bool Modificar(T entidad);
-        bool Eliminar(T entidad);
+        //bool Agregar(T entidad);
+        bool Agregar(string comando);
+        bool Eliminar(string comando);
+
+        bool PruebaConexion();
     }
     
 
