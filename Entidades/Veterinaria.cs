@@ -16,7 +16,8 @@ namespace Entidades
         private List<Mascota> listaMascotasInternadas; // agregar capacidad limite para la cant de mascotas internadas
         private List<MedicoVeterinario> listaMedicosVeterinarios;
         private List<Producto> listaPrecios;
-        private List<Turno> listaTurnos;    
+        private List<Turno> listaTurnos;
+        private Usuario usuarioAcutal;
 
         #region CONSTRUCTOR
         /// <summary>
@@ -29,10 +30,26 @@ namespace Entidades
             this.listaMedicosVeterinarios = new List<MedicoVeterinario>();
             this.listaPrecios = new List<Producto>();
             this.listaTurnos = new List<Turno>();
+            this.usuarioAcutal = new Usuario();
+            
+        }
+        public Veterinaria(Usuario usuarioAcutal) : this()
+        {
+            this.usuarioAcutal = usuarioAcutal;
         }
         #endregion
 
         #region PROPIEDADES
+
+        /// <summary>
+        /// Propiedad de lectura y escritura del atributo usuarioActual
+        /// </summary>
+        public Usuario UsuarioActual
+        {
+            get { return this.usuarioAcutal; }
+            set { this.usuarioAcutal = value; }
+        }
+
         /// <summary>
         /// Propiedad de lectura y escritura del atributo listaMascotas
         /// </summary>

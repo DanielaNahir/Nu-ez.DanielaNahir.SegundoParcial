@@ -62,16 +62,22 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            FrmInternacion frmAgregarMascota = new FrmInternacion(this.veterinaria.ListaMascotas);
-            frmAgregarMascota.ShowDialog();
-
-            if (frmAgregarMascota.DialogResult == DialogResult.OK)
+            if (this.veterinaria.UsuarioActual.AccesoCrear)
             {
-                this.veterinaria.ListaMascotasInternadas.Add(frmAgregarMascota.mascota);
-                if (this.accesoDatos.Agregar(frmAgregarMascota.mascota))
-                    MessageBox.Show("Mascota agregada");
-                this.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
+                FrmInternacion frmAgregarMascota = new FrmInternacion(this.veterinaria.ListaMascotas);
+                frmAgregarMascota.ShowDialog();
+
+                if (frmAgregarMascota.DialogResult == DialogResult.OK)
+                {
+                    this.veterinaria.ListaMascotasInternadas.Add(frmAgregarMascota.mascota);
+                    if (this.accesoDatos.Agregar(frmAgregarMascota.mascota))
+                        MessageBox.Show("Mascota agregada");
+                    this.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
+                }
             }
+            else
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
+            
         }
 
         /// <summary>
@@ -82,35 +88,41 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            int indice = this.lstVisor.SelectedIndex;
-
-            FrmMostrarMascota frmMostrarMascota;
-
-            if (indice == -1)
+            if (this.veterinaria.UsuarioActual.AccesoEliminar)
             {
-                MessageBox.Show("Debe seleccionar una mascota de la lista");
-                return;
-            }
-            else
-            {
-                frmMostrarMascota = base.CrearFrmDelAnimalSeleccionado(indice, this.veterinaria.ListaMascotasInternadas);
-            }
+                int indice = this.lstVisor.SelectedIndex;
 
-            frmMostrarMascota.ShowDialog();
-            if (frmMostrarMascota.DialogResult == DialogResult.OK)
-            {
-                if (frmMostrarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotasInternadas))
+                FrmMostrarMascota frmMostrarMascota;
+
+                if (indice == -1)
                 {
-                    this.veterinaria.ListaMascotasInternadas.RemoveAt(indice);
-                    if (this.accesoDatos.Eliminar(frmMostrarMascota.mascota))
-                        MessageBox.Show("Mascota eliminada");
-                    base.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
+                    MessageBox.Show("Debe seleccionar una mascota de la lista");
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("La mascota que quiere eliminar no existe");
+                    frmMostrarMascota = base.CrearFrmDelAnimalSeleccionado(indice, this.veterinaria.ListaMascotasInternadas);
+                }
+
+                frmMostrarMascota.ShowDialog();
+                if (frmMostrarMascota.DialogResult == DialogResult.OK)
+                {
+                    if (frmMostrarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotasInternadas))
+                    {
+                        this.veterinaria.ListaMascotasInternadas.RemoveAt(indice);
+                        if (this.accesoDatos.Eliminar(frmMostrarMascota.mascota))
+                            MessageBox.Show("Mascota eliminada");
+                        base.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
+                    }
+                    else
+                    {
+                        MessageBox.Show("La mascota que quiere eliminar no existe");
+                    }
                 }
             }
+            else
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
+            
         }
 
         /// <summary>

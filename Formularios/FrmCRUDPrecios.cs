@@ -61,26 +61,32 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            FrmPrecios frmPrecio = new FrmPrecios();
-            frmPrecio.ShowDialog();
-
-            if (frmPrecio.DialogResult == DialogResult.OK)
+            if (this.veterinaria.UsuarioActual.AccesoCrear)
             {
-                if (!frmPrecio.producto.VerificarIgualdad(this.veterinaria.ListaProductos))
-                {
-                    this.veterinaria += frmPrecio.producto;
-                    if (this.accesoDatosProducto.Agregar(frmPrecio.producto))
-                        MessageBox.Show("Producto agregado");
-                    else
-                        MessageBox.Show("No pudo agregarse el producto");
+                FrmPrecios frmPrecio = new FrmPrecios();
+                frmPrecio.ShowDialog();
 
-                    base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
-                }
-                else
+                if (frmPrecio.DialogResult == DialogResult.OK)
                 {
-                    MessageBox.Show("El producto que esta intentando agregar ya existe");
+                    if (!frmPrecio.producto.VerificarIgualdad(this.veterinaria.ListaProductos))
+                    {
+                        this.veterinaria += frmPrecio.producto;
+                        if (this.accesoDatosProducto.Agregar(frmPrecio.producto))
+                            MessageBox.Show("Producto agregado");
+                        else
+                            MessageBox.Show("No pudo agregarse el producto");
+
+                        base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
+                    }
+                    else
+                    {
+                        MessageBox.Show("El producto que esta intentando agregar ya existe");
+                    }
                 }
             }
+            else
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
+            
         }
 
         /// <summary>
@@ -90,29 +96,35 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            int indice = base.lstVisor.SelectedIndex;
-
-            FrmPrecios frmPrecio;
-
-            if (indice == -1)
+            if (this.veterinaria.UsuarioActual.AccesoModificar)
             {
-                MessageBox.Show("Debe seleccionar un producto de la lista");
-                return;
+                int indice = base.lstVisor.SelectedIndex;
+
+                FrmPrecios frmPrecio;
+
+                if (indice == -1)
+                {
+                    MessageBox.Show("Debe seleccionar un producto de la lista");
+                    return;
+                }
+                else
+                {
+                    frmPrecio = new FrmPrecios(this.veterinaria.ListaProductos[indice]);
+                }
+
+                frmPrecio.ShowDialog();
+                if (frmPrecio.DialogResult == DialogResult.OK)
+                {
+                    this.veterinaria.ListaProductos[indice] = frmPrecio.producto;
+                    if (this.accesoDatosProducto.Modificar(frmPrecio.producto))
+                        MessageBox.Show("Producto modificado");
+
+                    base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
+                }
             }
             else
-            {
-                frmPrecio = new FrmPrecios(this.veterinaria.ListaProductos[indice]);
-            }
-
-            frmPrecio.ShowDialog();
-            if (frmPrecio.DialogResult == DialogResult.OK)
-            {
-                this.veterinaria.ListaProductos[indice] = frmPrecio.producto;
-                if (this.accesoDatosProducto.Modificar(frmPrecio.producto))
-                    MessageBox.Show("Producto modificado");
-                
-                base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
-            }
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
+            
         }
 
         /// <summary>
@@ -123,35 +135,41 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            int indice = base.lstVisor.SelectedIndex;
-
-            FrmPrecios frmPrecio;
-
-            if (indice == -1)
+            if (this.veterinaria.UsuarioActual.AccesoEliminar)
             {
-                MessageBox.Show("Debe seleccionar un producto de la lista");
-                return;
-            }
-            else
-            {
-                frmPrecio = new FrmPrecios(this.veterinaria.ListaProductos[indice]);
-            }
+                int indice = base.lstVisor.SelectedIndex;
 
-            frmPrecio.ShowDialog();
-            if (frmPrecio.DialogResult == DialogResult.OK)
-            {
-                if (frmPrecio.producto.VerificarIgualdad(this.veterinaria.ListaProductos))
+                FrmPrecios frmPrecio;
+
+                if (indice == -1)
                 {
-                    this.veterinaria -=frmPrecio.producto;
-                    if (this.accesoDatosProducto.Eliminar(frmPrecio.producto))
-                        MessageBox.Show("Producto eliminado");
-                    base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
+                    MessageBox.Show("Debe seleccionar un producto de la lista");
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("El producto que esta intentando eliminar no existe");
+                    frmPrecio = new FrmPrecios(this.veterinaria.ListaProductos[indice]);
+                }
+
+                frmPrecio.ShowDialog();
+                if (frmPrecio.DialogResult == DialogResult.OK)
+                {
+                    if (frmPrecio.producto.VerificarIgualdad(this.veterinaria.ListaProductos))
+                    {
+                        this.veterinaria -= frmPrecio.producto;
+                        if (this.accesoDatosProducto.Eliminar(frmPrecio.producto))
+                            MessageBox.Show("Producto eliminado");
+                        base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
+                    }
+                    else
+                    {
+                        MessageBox.Show("El producto que esta intentando eliminar no existe");
+                    }
                 }
             }
+            else
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
+            
         }
 
         /// <summary>

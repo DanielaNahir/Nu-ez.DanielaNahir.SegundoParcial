@@ -57,29 +57,34 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            int indice = base.lstVisor.SelectedIndex;
-
-            FrmMostrarMascota frm1;
-
-            if (indice == -1)
+            if (this.Veterinaria.UsuarioActual.AccesoModificar)
             {
-                MessageBox.Show("Debe seleccionar una mascota de la lista");
-                return;
+                int indice = base.lstVisor.SelectedIndex;
+
+                FrmMostrarMascota frm1;
+
+                if (indice == -1)
+                {
+                    MessageBox.Show("Debe seleccionar una mascota de la lista");
+                    return;
+                }
+                else
+                {
+                    frm1 = base.CrearFrmDelAnimalSeleccionado(indice, this.veterinaria.ListaMascotas);
+                }
+
+                frm1.ShowDialog();
+                if (frm1.DialogResult == DialogResult.OK)
+                {
+
+                    this.veterinaria.ListaMascotas[indice] = frm1.mascota;
+                    if (this.accesoDatos.Modificar(frm1.mascota))
+                        MessageBox.Show("Mascota modificada");
+                    base.ActualizarVisor(this.veterinaria.ListaMascotas);
+                }
             }
             else
-            {
-                frm1 = base.CrearFrmDelAnimalSeleccionado(indice, this.veterinaria.ListaMascotas);
-            }
-
-            frm1.ShowDialog();
-            if (frm1.DialogResult == DialogResult.OK)
-            {
-
-                this.veterinaria.ListaMascotas[indice] = frm1.mascota;
-                if (this.accesoDatos.Modificar(frm1.mascota))
-                    MessageBox.Show("Mascota modificada");
-                base.ActualizarVisor(this.veterinaria.ListaMascotas);
-            }
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
         }
 
         /// <summary>
@@ -89,35 +94,40 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            int indice = base.lstVisor.SelectedIndex;
-
-            FrmMostrarMascota frmMostrarMascota;
-
-            if (indice == -1)
+            if (this.veterinaria.UsuarioActual.AccesoEliminar)
             {
-                MessageBox.Show("Debe seleccionar una mascota de la lista");
-                return;
-            }
-            else
-            {
-                frmMostrarMascota = base.CrearFrmDelAnimalSeleccionado(indice, this.veterinaria.ListaMascotas);
-            }
+                int indice = base.lstVisor.SelectedIndex;
 
-            frmMostrarMascota.ShowDialog();
-            if (frmMostrarMascota.DialogResult == DialogResult.OK)
-            {
-                if (frmMostrarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotas))
+                FrmMostrarMascota frmMostrarMascota;
+
+                if (indice == -1)
                 {
-                    this.veterinaria -= frmMostrarMascota.mascota;
-                    if (this.accesoDatos.Eliminar(frmMostrarMascota.mascota))
-                        MessageBox.Show("Mascota eliminada");
-                    base.ActualizarVisor(this.veterinaria.ListaMascotas);
+                    MessageBox.Show("Debe seleccionar una mascota de la lista");
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("La historia clinica que esta intentando eliminar no existe");
+                    frmMostrarMascota = base.CrearFrmDelAnimalSeleccionado(indice, this.veterinaria.ListaMascotas);
+                }
+
+                frmMostrarMascota.ShowDialog();
+                if (frmMostrarMascota.DialogResult == DialogResult.OK)
+                {
+                    if (frmMostrarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotas))
+                    {
+                        this.veterinaria -= frmMostrarMascota.mascota;
+                        if (this.accesoDatos.Eliminar(frmMostrarMascota.mascota))
+                            MessageBox.Show("Mascota eliminada");
+                        base.ActualizarVisor(this.veterinaria.ListaMascotas);
+                    }
+                    else
+                    {
+                        MessageBox.Show("La historia clinica que esta intentando eliminar no existe");
+                    }
                 }
             }
+            else
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
         }
 
         /// <summary>
@@ -127,24 +137,28 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            FrmHistoriasClinicas frmAgregarMascota = new FrmHistoriasClinicas();
-            frmAgregarMascota.ShowDialog();
-
-            if (frmAgregarMascota.DialogResult == DialogResult.OK)
+            if (this.veterinaria.UsuarioActual.AccesoCrear)
             {
-                if (!frmAgregarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotas))
-                {
-                    if (this.accesoDatos.Agregar(frmAgregarMascota.mascota))
-                        MessageBox.Show("Mascota agregada");
-                    this.veterinaria += frmAgregarMascota.mascota;
-                    base.ActualizarVisor(this.veterinaria.ListaMascotas);
-                }
-                else
-                {
-                    MessageBox.Show("La historia clinica que esta intentando crear ya existe");
-                }
+                FrmHistoriasClinicas frmAgregarMascota = new FrmHistoriasClinicas();
+                frmAgregarMascota.ShowDialog();
 
+                if (frmAgregarMascota.DialogResult == DialogResult.OK)
+                {
+                    if (!frmAgregarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotas))
+                    {
+                        if (this.accesoDatos.Agregar(frmAgregarMascota.mascota))
+                            MessageBox.Show("Mascota agregada");
+                        this.veterinaria += frmAgregarMascota.mascota;
+                        base.ActualizarVisor(this.veterinaria.ListaMascotas);
+                    }
+                    else
+                    {
+                        MessageBox.Show("La historia clinica que esta intentando crear ya existe");
+                    }
+                }
             }
+            else
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
         }
 
         /// <summary>

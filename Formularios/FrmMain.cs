@@ -17,23 +17,23 @@ namespace Formularios
         /// <summary>
         /// Constructor sin parametros
         /// </summary>
-        public FrmMain()
+        public FrmMain(Usuario usuario)
         {
             InitializeComponent();
             this.CenterToScreen();
-            this.usuario = new Usuario();
-            this.veterinaria = new Veterinaria();
+            this.veterinaria = new Veterinaria(usuario);
             this.lblHora.Text = DateTime.Now.Date.ToShortDateString();
-        }
-        /// <summary>
-        /// Constructor que recibe y almacena un parametro de tipo Usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        public FrmMain(Usuario usuario) : this()
-        {
             this.usuario = usuario;
-            this.lblNombre.Text = $"Usuario: {this.usuario.nombre} {this.usuario.apellido}";
+            this.lblNombre.Text = $"Usuario: {this.veterinaria.UsuarioActual.nombre} {this.veterinaria.UsuarioActual.apellido}";
         }
+        ///// <summary>
+        ///// Constructor que recibe y almacena un parametro de tipo Usuario
+        ///// </summary>
+        ///// <param name="usuario"></param>
+        //public FrmMain() : this()
+        //{
+            
+        //}
 
         /// <summary>
         /// Se ejecuta cuando carga el formulario, deserializa el archivo XML con los datos de la aplicacion

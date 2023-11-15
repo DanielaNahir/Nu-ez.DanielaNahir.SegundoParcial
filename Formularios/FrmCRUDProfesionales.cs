@@ -57,23 +57,29 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            FrmProfesionales frmProfesionales = new FrmProfesionales();
-            frmProfesionales.ShowDialog();
-
-            if (frmProfesionales.DialogResult == DialogResult.OK)
+            if (this.veterinaria.UsuarioActual.AccesoCrear)
             {
-                if (!this.veterinaria.ListaMedicosVeterinarios.Contains(frmProfesionales.medico))
+                FrmProfesionales frmProfesionales = new FrmProfesionales();
+                frmProfesionales.ShowDialog();
+
+                if (frmProfesionales.DialogResult == DialogResult.OK)
                 {
-                    this.veterinaria += frmProfesionales.medico;
-                    if (this.accesoDatos.Agregar(frmProfesionales.medico))
-                        MessageBox.Show("Profesional agregado");
-                    base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
-                }
-                else
-                {
-                    MessageBox.Show("El profesional que esta intentando agregar ya existe");
+                    if (!this.veterinaria.ListaMedicosVeterinarios.Contains(frmProfesionales.medico))
+                    {
+                        this.veterinaria += frmProfesionales.medico;
+                        if (this.accesoDatos.Agregar(frmProfesionales.medico))
+                            MessageBox.Show("Profesional agregado");
+                        base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El profesional que esta intentando agregar ya existe");
+                    }
                 }
             }
+            else
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
+            
         }
 
         /// <summary>
@@ -84,35 +90,41 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            int indice = base.lstVisor.SelectedIndex;
-
-            FrmProfesionales frm1;
-
-            if (indice == -1)
+            if (this.veterinaria.UsuarioActual.AccesoEliminar)
             {
-                MessageBox.Show("Debe seleccionar un profesional de la lista");
-                return;
-            }
-            else
-            {
-                frm1 = new FrmProfesionales(this.veterinaria.ListaMedicosVeterinarios[indice]);
-            }
+                int indice = base.lstVisor.SelectedIndex;
 
-            frm1.ShowDialog();
-            if (frm1.DialogResult == DialogResult.OK)
-            {
-                if (this.veterinaria.ListaMedicosVeterinarios.Contains(frm1.medico))
+                FrmProfesionales frm1;
+
+                if (indice == -1)
                 {
-                    this.veterinaria -= frm1.medico;
-                    if (this.accesoDatos.Eliminar(frm1.medico))
-                        MessageBox.Show("Profesional eliminado");
-                    base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
+                    MessageBox.Show("Debe seleccionar un profesional de la lista");
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("El profesional que esta intentando eliminar no existe");
+                    frm1 = new FrmProfesionales(this.veterinaria.ListaMedicosVeterinarios[indice]);
+                }
+
+                frm1.ShowDialog();
+                if (frm1.DialogResult == DialogResult.OK)
+                {
+                    if (this.veterinaria.ListaMedicosVeterinarios.Contains(frm1.medico))
+                    {
+                        this.veterinaria -= frm1.medico;
+                        if (this.accesoDatos.Eliminar(frm1.medico))
+                            MessageBox.Show("Profesional eliminado");
+                        base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El profesional que esta intentando eliminar no existe");
+                    }
                 }
             }
+            else
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
+            
         }
 
         /// <summary>
@@ -123,28 +135,34 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            int indice = base.lstVisor.SelectedIndex;
-
-            FrmProfesionales frm1;
-
-            if (indice == -1)
+            if (this.veterinaria.UsuarioActual.AccesoModificar)
             {
-                MessageBox.Show("Debe seleccionar un profesional de la lista");
-                return;
+                int indice = base.lstVisor.SelectedIndex;
+
+                FrmProfesionales frm1;
+
+                if (indice == -1)
+                {
+                    MessageBox.Show("Debe seleccionar un profesional de la lista");
+                    return;
+                }
+                else
+                {
+                    frm1 = new FrmProfesionales(this.veterinaria.ListaMedicosVeterinarios[indice]);
+                }
+
+                frm1.ShowDialog();
+                if (frm1.DialogResult == DialogResult.OK)
+                {
+                    this.veterinaria.ListaMedicosVeterinarios[indice] = frm1.medico;
+                    if (this.accesoDatos.Modificar(frm1.medico))
+                        MessageBox.Show("Profesional modificado");
+                    base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
+                }
             }
             else
-            {
-                frm1 = new FrmProfesionales(this.veterinaria.ListaMedicosVeterinarios[indice]);
-            }
-
-            frm1.ShowDialog();
-            if (frm1.DialogResult == DialogResult.OK)
-            {
-                this.veterinaria.ListaMedicosVeterinarios[indice] = frm1.medico;
-                if (this.accesoDatos.Modificar(frm1.medico))
-                    MessageBox.Show("Profesional modificado");
-                base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
-            }
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
+          
         }
 
         /// <summary>

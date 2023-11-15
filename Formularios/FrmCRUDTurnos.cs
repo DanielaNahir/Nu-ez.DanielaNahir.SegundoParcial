@@ -50,22 +50,28 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            FrmTurnos frmTurnos = new FrmTurnos(this.veterinaria.ListaMedicosVeterinarios,
-                                                    this.veterinaria.ListaMascotas);
-            frmTurnos.ShowDialog();
-
-            if (frmTurnos.DialogResult == DialogResult.OK)
+            if (this.veterinaria.UsuarioActual.AccesoCrear)
             {
-                if (!this.veterinaria.ListaTurnos.Contains(frmTurnos.turno))
+                FrmTurnos frmTurnos = new FrmTurnos(this.veterinaria.ListaMedicosVeterinarios,
+                                                    this.veterinaria.ListaMascotas);
+                frmTurnos.ShowDialog();
+
+                if (frmTurnos.DialogResult == DialogResult.OK)
                 {
-                    this.veterinaria += frmTurnos.turno;
-                    base.ActualizarVisor(this.veterinaria.ListaTurnos);
-                }
-                else
-                {
-                    MessageBox.Show("Ese turno no esta disponible");
+                    if (!this.veterinaria.ListaTurnos.Contains(frmTurnos.turno))
+                    {
+                        this.veterinaria += frmTurnos.turno;
+                        base.ActualizarVisor(this.veterinaria.ListaTurnos);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ese turno no esta disponible");
+                    }
                 }
             }
+            else
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
+            
         }
 
         /// <summary>
@@ -76,33 +82,38 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            int indice = base.lstVisor.SelectedIndex;
-            DialogResult respuesta;
+            if (this.veterinaria.UsuarioActual.AccesoEliminar)
+            {
+                int indice = base.lstVisor.SelectedIndex;
+                DialogResult respuesta;
 
-            if (indice == -1)
-            {
-                MessageBox.Show("Debe seleccionar un turno");
-                return;
-            }
-            else
-            {
-                respuesta = MessageBox.Show($"¿Eliminar turno?:\n{this.veterinaria.ListaTurnos[indice]}", "Atención!",
-                                                            MessageBoxButtons.OKCancel);
-            }
-            
-
-            if (respuesta == DialogResult.OK)
-            {
-                if (this.veterinaria.ListaTurnos.Contains(this.veterinaria.ListaTurnos[indice]))
+                if (indice == -1)
                 {
-                    this.veterinaria -= this.veterinaria.ListaTurnos[indice];
-                    base.ActualizarVisor(this.veterinaria.ListaTurnos);
+                    MessageBox.Show("Debe seleccionar un turno");
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("Ese turno no existe");
+                    respuesta = MessageBox.Show($"¿Eliminar turno?:\n{this.veterinaria.ListaTurnos[indice]}", "Atención!",
+                                                                MessageBoxButtons.OKCancel);
+                }
+
+                if (respuesta == DialogResult.OK)
+                {
+                    if (this.veterinaria.ListaTurnos.Contains(this.veterinaria.ListaTurnos[indice]))
+                    {
+                        this.veterinaria -= this.veterinaria.ListaTurnos[indice];
+                        base.ActualizarVisor(this.veterinaria.ListaTurnos);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ese turno no existe");
+                    }
                 }
             }
+            else
+                MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
+            
         }
 
         /// <summary>
