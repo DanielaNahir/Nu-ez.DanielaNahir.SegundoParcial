@@ -8,7 +8,7 @@ using Entidades;
 
 namespace Entidades
 {
-    public class AccesoDatosProducto<T>: AccesoDatos, IBaseDeDatosVeterinaria<T> where T : Producto
+    public class AccesoDatosProducto<T>: AccesoDatos, IBaseDeDatos<T> where T : Producto
     {
 
         public List<T> ObtenerTodosLosDatos()
@@ -16,22 +16,22 @@ namespace Entidades
             List<T> lista = new List<T>();
             try
             {
-                this.comando = new SqlCommand();
-                this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = "select nombre, precio from productos";
-                this.comando.Connection = this.conexion;
+                base.comando = new SqlCommand();
+                base.comando.CommandType = System.Data.CommandType.Text;
+                base.comando.CommandText = "select nombre, precio from productos";
+                base.comando.Connection = base.conexion;
 
-                this.conexion.Open();
-                this.lector = this.comando.ExecuteReader();
+                base.conexion.Open();
+                base.lector = base.comando.ExecuteReader();
 
-                while (this.lector.Read())
+                while (base.lector.Read())
                 {
                     Producto prod = new Producto();
-                    prod.Nombre = this.lector["nombre"].ToString();
-                    prod.Precio = (float)this.lector.GetDouble(1);
+                    prod.Nombre = base.lector["nombre"].ToString();
+                    prod.Precio = (float)base.lector.GetDouble(1);
                     lista.Add((T)prod);
                 }
-                this.lector.Close();
+                base.lector.Close();
             }
             //catch (Exception ex)
             //{
@@ -39,8 +39,8 @@ namespace Entidades
             //}
             finally
             {
-                if (this.conexion.State == System.Data.ConnectionState.Open)
-                    this.conexion.Close();
+                if (base.conexion.State == System.Data.ConnectionState.Open)
+                    base.conexion.Close();
             }
 
             return lista;
@@ -50,13 +50,13 @@ namespace Entidades
             bool result = false;
             try
             {
-                this.comando = new SqlCommand();
-                this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = "insert into productos(nombre, precio) values('" + prod.Nombre + "'," + prod.Precio + ")";
-                this.comando.Connection = this.conexion;
+                base.comando = new SqlCommand();
+                base.comando.CommandType = System.Data.CommandType.Text;
+                base.comando.CommandText = "insert into productos(nombre, precio) values('" + prod.Nombre + "'," + prod.Precio + ")";
+                base.comando.Connection = base.conexion;
 
-                this.conexion.Open();
-                int filas = this.comando.ExecuteNonQuery();
+                base.conexion.Open();
+                int filas = base.comando.ExecuteNonQuery();
                 if (filas == 1)
                     result = true;
             }
@@ -66,8 +66,8 @@ namespace Entidades
             //}
             finally
             {
-                if (this.conexion.State == System.Data.ConnectionState.Open)
-                    this.conexion.Close();
+                if (base.conexion.State == System.Data.ConnectionState.Open)
+                    base.conexion.Close();
             }
 
             return result;
@@ -77,16 +77,16 @@ namespace Entidades
             bool result = false;
             try
             {
-                this.comando = new SqlCommand();
-                this.comando.Parameters.AddWithValue("@nombre", prod.Nombre);
-                this.comando.Parameters.AddWithValue("@precio", prod.Precio);
+                base.comando = new SqlCommand();
+                base.comando.Parameters.AddWithValue("@nombre", prod.Nombre);
+                base.comando.Parameters.AddWithValue("@precio", prod.Precio);
 
-                this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = "update productos set nombre = @nombre, precio = @precio where nombre = @nombre";
-                this.comando.Connection = this.conexion;
+                base.comando.CommandType = System.Data.CommandType.Text;
+                base.comando.CommandText = "update productos set nombre = @nombre, precio = @precio where nombre = @nombre";
+                base.comando.Connection = base.conexion;
 
-                this.conexion.Open();
-                int filas = this.comando.ExecuteNonQuery();
+                base.conexion.Open();
+                int filas = base.comando.ExecuteNonQuery();
                 if (filas == 1)
                     result = true;
 
@@ -97,8 +97,8 @@ namespace Entidades
             //}
             finally
             {
-                if (this.conexion.State == System.Data.ConnectionState.Open)
-                    this.conexion.Close();
+                if (base.conexion.State == System.Data.ConnectionState.Open)
+                    base.conexion.Close();
             }
 
             return result;
@@ -108,14 +108,14 @@ namespace Entidades
             bool result = false;
             try
             {
-                this.comando = new SqlCommand();
+                base.comando = new SqlCommand();
 
-                this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = $"DELETE from productos WHERE nombre = '{prod.Nombre}'";
-                this.comando.Connection = this.conexion;
+                base.comando.CommandType = System.Data.CommandType.Text;
+                base.comando.CommandText = $"DELETE from productos WHERE nombre = '{prod.Nombre}'";
+                base.comando.Connection = base.conexion;
 
-                this.conexion.Open();
-                int filas = this.comando.ExecuteNonQuery();
+                base.conexion.Open();
+                int filas = base.comando.ExecuteNonQuery();
                 if (filas == 1)
                     result = true;
 
@@ -126,8 +126,8 @@ namespace Entidades
             //}
             finally
             {
-                if (this.conexion.State == System.Data.ConnectionState.Open)
-                    this.conexion.Close();
+                if (base.conexion.State == System.Data.ConnectionState.Open)
+                    base.conexion.Close();
             }
 
             return result;

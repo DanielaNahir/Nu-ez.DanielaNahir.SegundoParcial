@@ -9,7 +9,7 @@ using System.Threading.Tasks.Dataflow;
 
 namespace Entidades
 {
-    public class AccesoDatosListaMascotas<T> : AccesoDatos, IParsearEnumerados, IBaseDeDatosVeterinaria<T> where T : Mascota
+    public class AccesoDatosListaMascotas<T> : AccesoDatos, IParsearEnumerados, IBaseDeDatos<T> where T : Mascota
     {
         public string tabla;
         public AccesoDatosListaMascotas(string tabla) : base()

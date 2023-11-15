@@ -11,6 +11,10 @@
         private string Correo;
         private string Clave;
         protected string Perfil;
+        private bool accesoEliminar;
+        private bool accesoCrear;
+        private bool accesoModificar;
+
 
         /// <summary>
         /// Constructor sin parametros
@@ -23,6 +27,9 @@
             this.Correo = "";
             this.Clave = "";
             this.Perfil = "";
+            this.accesoEliminar = false;
+            this.accesoCrear = false;
+            this.accesoModificar = false;
         }
         /// <summary>
         /// Constructor de la clase
@@ -42,8 +49,22 @@
             this.Correo = correo;
             this.Clave = clave;
             this.Perfil = perfil;
+
+            switch (this.perfil)
+            {
+                case "administrador":
+                    this.accesoEliminar = true;
+                    this.accesoCrear = true;
+                    this.accesoModificar = true;
+                    break;
+                case "supervisor":
+                    this.accesoCrear = true;
+                    this.accesoModificar = true;
+                    break;
+            }
         }
 
+        #region PROPIEDADES 
         /// <summary>
         /// Propiedad de lectura y escritura del atributo nombre
         /// </summary>
@@ -92,6 +113,13 @@
             get { return this.Perfil; }
             set { this.Perfil = value; }
         }
+
+        public bool AccesoEliminar { get { return this.accesoEliminar; }}
+        public bool AccesoCrear { get { return this.accesoCrear; } }
+        public bool AccesoModificar { get { return this.accesoModificar; } }
+
+        #endregion
+
 
     }
 }

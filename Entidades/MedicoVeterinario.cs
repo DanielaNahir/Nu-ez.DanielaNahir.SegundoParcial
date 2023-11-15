@@ -14,7 +14,7 @@ namespace Entidades
         public string nombre;
         public string apellido;
         public EEspecialidad especialidad;
-        private int sueldo;
+        private float sueldo;
 
         /// <summary>
         /// Constructor de la clase
@@ -69,7 +69,7 @@ namespace Entidades
         /// <summary>
         /// Propiedad de lectura y escritura del atributo sueldo
         /// </summary>
-        public int Sueldo
+        public float Sueldo
         {
             get { return this.sueldo; }
             set { this.sueldo = value; }

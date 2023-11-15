@@ -1,7 +1,7 @@
 ﻿namespace Entidades
 {
 
-    public interface IBaseDeDatosVeterinaria<T>
+    public interface IBaseDeDatos<T>
     {
         List<T> ObtenerTodosLosDatos();
         //bool Modificar(string comando);
