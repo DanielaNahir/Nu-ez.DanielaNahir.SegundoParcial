@@ -60,8 +60,7 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            this.lblContrIncorrecta.Visible = false;
-            this.lblUsuIncorrecto.Visible = false;
+            this.lblIncorrecto.Visible = false;
 
             int cont = 0;
 
@@ -70,23 +69,18 @@ namespace Formularios
                 foreach (Usuario usu in this.usuarios)
                 {
                     cont++;
-                    if (usu.correo == this.txtMail.Text)
+                    if (usu.correo == this.txtMail.Text && usu.clave == this.txtContraseña.Text)
                     {
-                        this.lblUsuIncorrecto.Visible = false;
-                        if (usu.clave == this.txtContraseña.Text)
-                        {
-                            FrmMain frmMain = new FrmMain(usu);
-                            frmMain.ShowDialog();
-                            this.txtContraseña.Clear();
-                            this.txtMail.Clear();
-                            break;
-                        }
-                        this.lblContrIncorrecta.Visible = true;
+                        this.lblIncorrecto.Visible = false;
+                        FrmMain frmMain = new FrmMain(usu);
+                        frmMain.ShowDialog();
+                        this.txtContraseña.Clear();
+                        this.txtMail.Clear();
                         break;
                     }
                     else if (cont == this.usuarios.Count())
                     {
-                        this.lblUsuIncorrecto.Visible = true;
+                        this.lblIncorrecto.Visible = true;
                     }
 
                 }

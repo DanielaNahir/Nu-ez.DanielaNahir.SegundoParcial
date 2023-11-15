@@ -34,8 +34,7 @@
             lblMail = new Label();
             lblTitulo = new Label();
             btnIniciarSesion = new Button();
-            lblContrIncorrecta = new Label();
-            lblUsuIncorrecto = new Label();
+            lblIncorrecto = new Label();
             SuspendLayout();
             // 
             // txtMail
@@ -94,35 +93,23 @@
             btnIniciarSesion.UseVisualStyleBackColor = true;
             btnIniciarSesion.Click += btnIniciarSesion_Click;
             // 
-            // lblContrIncorrecta
+            // lblIncorrecto
             // 
-            lblContrIncorrecta.AutoSize = true;
-            lblContrIncorrecta.ForeColor = Color.Red;
-            lblContrIncorrecta.Location = new Point(35, 145);
-            lblContrIncorrecta.Name = "lblContrIncorrecta";
-            lblContrIncorrecta.Size = new Size(128, 15);
-            lblContrIncorrecta.TabIndex = 6;
-            lblContrIncorrecta.Text = "°Contraseña incorrecta";
-            lblContrIncorrecta.Visible = false;
-            // 
-            // lblUsuIncorrecto
-            // 
-            lblUsuIncorrecto.AutoSize = true;
-            lblUsuIncorrecto.ForeColor = Color.Red;
-            lblUsuIncorrecto.Location = new Point(35, 84);
-            lblUsuIncorrecto.Name = "lblUsuIncorrecto";
-            lblUsuIncorrecto.Size = new Size(109, 15);
-            lblUsuIncorrecto.TabIndex = 7;
-            lblUsuIncorrecto.Text = "°Usuario incorrecto";
-            lblUsuIncorrecto.Visible = false;
+            lblIncorrecto.AutoSize = true;
+            lblIncorrecto.ForeColor = Color.Red;
+            lblIncorrecto.Location = new Point(35, 84);
+            lblIncorrecto.Name = "lblIncorrecto";
+            lblIncorrecto.Size = new Size(185, 15);
+            lblIncorrecto.TabIndex = 7;
+            lblIncorrecto.Text = "°Usuario o contraseña incorrectos";
+            lblIncorrecto.Visible = false;
             // 
             // FrmLog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(244, 264);
-            Controls.Add(lblUsuIncorrecto);
-            Controls.Add(lblContrIncorrecta);
+            Controls.Add(lblIncorrecto);
             Controls.Add(btnIniciarSesion);
             Controls.Add(lblTitulo);
             Controls.Add(lblMail);
@@ -146,7 +133,6 @@
         private Label lblMail;
         private Label lblTitulo;
         private Button btnIniciarSesion;
-        private Label lblContrIncorrecta;
-        private Label lblUsuIncorrecto;
+        private Label lblIncorrecto;
     }
 }

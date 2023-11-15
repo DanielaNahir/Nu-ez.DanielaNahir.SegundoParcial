@@ -165,10 +165,7 @@ namespace Entidades
         /// <returns>Booleano true son iguales o false si no lo son</returns>
         public static bool operator ==(Perro m1, Perro m2)
         {
-            return m1.nombre == m2.nombre
-                && m1.raza == m2.raza
-                && m1.nombreDueño == m2.nombreDueño
-                && m1.apellidoDueño == m2.apellidoDueño;
+            return m1 == m2 && m1.raza == m2.raza;
         }
         /// <summary>
         /// Sobrecarga del operador != para comparar dos Perro
