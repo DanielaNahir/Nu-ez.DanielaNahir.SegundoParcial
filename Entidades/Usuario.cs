@@ -114,9 +114,9 @@
             set { this.Perfil = value; }
         }
 
-        public bool AccesoEliminar { get { return this.accesoEliminar; }}
-        public bool AccesoCrear { get { return this.accesoCrear; } }
-        public bool AccesoModificar { get { return this.accesoModificar; } }
+        public bool AccesoEliminar { get { return this.accesoEliminar; }} 
+        public bool AccesoCrear { get { return this.accesoCrear; } } 
+        public bool AccesoModificar { get { return this.accesoModificar; } } 
 
         #endregion
 
