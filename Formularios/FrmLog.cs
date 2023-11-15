@@ -72,17 +72,17 @@ namespace Formularios
                     if (usu.correo == this.txtMail.Text && usu.clave == this.txtContraseña.Text)
                     {
                         this.lblIncorrecto.Visible = false;
-                        FrmMain frmMain = new FrmMain(usu);
-                        frmMain.ShowDialog();
+                        FrmMain frmMain = new FrmMain(usu, this);
+                        frmMain.Show();
                         this.txtContraseña.Clear();
                         this.txtMail.Clear();
+                        this.Hide();
                         break;
                     }
                     else if (cont == this.usuarios.Count())
                     {
                         this.lblIncorrecto.Visible = true;
                     }
-
                 }
             }
             else

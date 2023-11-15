@@ -13,17 +13,19 @@ namespace Formularios
     {
         private Usuario usuario;
         private Veterinaria veterinaria;
+        private FrmLog fromlog;
 
         /// <summary>
         /// Constructor sin parametros
         /// </summary>
-        public FrmMain(Usuario usuario)
+        public FrmMain(Usuario usuario, FrmLog frmlog)
         {
             InitializeComponent();
             this.CenterToScreen();
             this.veterinaria = new Veterinaria(usuario);
             this.lblHora.Text = DateTime.Now.Date.ToShortDateString();
             this.usuario = usuario;
+            this.fromlog = frmlog;
             this.lblNombre.Text = $"Usuario: {this.veterinaria.UsuarioActual.nombre} {this.veterinaria.UsuarioActual.apellido}";
         }
         ///// <summary>
@@ -107,12 +109,15 @@ namespace Formularios
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.SerializarXML();
-            DialogResult respuesta = MessageBox.Show("¿Está seguro de salir de la apricación?\nLos datos " +
-                                     "que no haya guardado se perderan", "Atención!", MessageBoxButtons.YesNo);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de salir de la apricación?", "Atención!", MessageBoxButtons.YesNo);
 
             if (respuesta == DialogResult.No)
             {
                 e.Cancel = true;
+            }
+            else
+            {
+                this.fromlog.Show();
             }
         }
 
