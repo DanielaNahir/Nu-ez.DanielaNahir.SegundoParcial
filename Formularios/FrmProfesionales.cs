@@ -24,7 +24,7 @@ namespace Formularios
         public FrmProfesionales()
         {
             InitializeComponent();
-            this.CenterToParent();
+            this.CenterToScreen();
             this.medico = new MedicoVeterinario();
         }
 

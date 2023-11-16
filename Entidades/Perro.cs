@@ -14,9 +14,10 @@ namespace Entidades
         /// <summary>
         /// Constructor sin parametros
         /// </summary>
-        public Perro()
+        public Perro() : base()
         {
-
+            this.muerde = false;
+            this.raza = ERazaPerro.Mestizo;
         }
 
         //uno menos
@@ -32,7 +33,6 @@ namespace Entidades
             string apellidoDueño, bool muerde)
             : base(EMascota.Perro, nombre, edad, nombreDueño, apellidoDueño)
         {
-            this.raza = ERazaPerro.Mestizo;
             this.muerde = muerde;
         }
         //todos los parametros

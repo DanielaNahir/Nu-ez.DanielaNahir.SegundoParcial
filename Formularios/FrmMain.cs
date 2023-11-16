@@ -18,35 +18,38 @@ namespace Formularios
         /// <summary>
         /// Constructor sin parametros
         /// </summary>
-        public FrmMain(Usuario usuario, FrmLog frmlog)
+        public FrmMain()
         {
             InitializeComponent();
             this.CenterToScreen();
-            this.veterinaria = new Veterinaria(usuario);
+            this.veterinaria = new Veterinaria();
             this.lblHora.Text = DateTime.Now.Date.ToShortDateString();
+            this.usuario = new Usuario();
+            this.fromlog = new FrmLog();
+        }
+        ///// <summary>
+        ///// Constructor que recibe y almacena un parametro de tipo Usuario y el frmLog
+        ///// </summary>
+        ///// <param name="usuario"></param>
+        public FrmMain(Usuario usuario, FrmLog frmlog) : this()
+        {
+            this.DeserializarXML();
             this.usuario = usuario;
+            this.veterinaria.UsuarioActual = usuario;
             this.fromlog = frmlog;
             this.lblNombre.Text = $"Usuario: {this.veterinaria.UsuarioActual.nombre} {this.veterinaria.UsuarioActual.apellido}";
         }
-        ///// <summary>
-        ///// Constructor que recibe y almacena un parametro de tipo Usuario
-        ///// </summary>
-        ///// <param name="usuario"></param>
-        //public FrmMain() : this()
-        //{
-            
-        //}
 
         /// <summary>
         /// Se ejecuta cuando carga el formulario, deserializa el archivo XML con los datos de la aplicacion
-        /// y llama al metodo ActualizarHistorial
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.ActualizarHistorial(this.usuario);
-            this.DeserializarXML();
+            //this.DeserializarXML();
             this.MostrarTurnosDelDia();
         }
 
@@ -219,7 +222,6 @@ namespace Formularios
                 {
                     XmlSerializer serial = new XmlSerializer(typeof(Veterinaria));
                     this.veterinaria = (Veterinaria)serial.Deserialize(reader);
-
                 }
             }
             catch (Exception ex)

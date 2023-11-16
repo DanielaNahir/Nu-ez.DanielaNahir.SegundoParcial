@@ -49,19 +49,6 @@
             this.Correo = correo;
             this.Clave = clave;
             this.Perfil = perfil;
-
-            switch (this.perfil)
-            {
-                case "administrador":
-                    this.accesoEliminar = true;
-                    this.accesoCrear = true;
-                    this.accesoModificar = true;
-                    break;
-                case "supervisor":
-                    this.accesoCrear = true;
-                    this.accesoModificar = true;
-                    break;
-            }
         }
 
         #region PROPIEDADES 
@@ -111,7 +98,22 @@
         public string perfil
         {
             get { return this.Perfil; }
-            set { this.Perfil = value; }
+            set 
+            {
+                this.Perfil = value;
+                switch (this.perfil)
+                {
+                    case "administrador":
+                        this.accesoEliminar = true;
+                        this.accesoCrear = true;
+                        this.accesoModificar = true;
+                        break;
+                    case "supervisor":
+                        this.accesoCrear = true;
+                        this.accesoModificar = true;
+                        break;
+                }; 
+            }
         }
 
         public bool AccesoEliminar { get { return this.accesoEliminar; }} 

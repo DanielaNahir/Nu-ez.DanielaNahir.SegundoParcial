@@ -21,6 +21,7 @@ namespace Formularios
         public FrmMostrarObjeto()
         {
             InitializeComponent();
+            this.CenterToScreen();
         }
 
         /// <summary>

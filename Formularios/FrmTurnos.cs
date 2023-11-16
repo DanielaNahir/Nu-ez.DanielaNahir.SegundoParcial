@@ -28,6 +28,7 @@ namespace Formularios
         public FrmTurnos()
         {
             InitializeComponent();
+            this.CenterToScreen();
 
             this.turno = new Turno();
             this.monthCalendarFecha.MinDate = DateTime.Now;

@@ -25,6 +25,7 @@ namespace Formularios
         public FrmPrecios()
         {
             InitializeComponent();
+            this.CenterToScreen();
             this.producto = new Producto();
         }
         /// <summary>

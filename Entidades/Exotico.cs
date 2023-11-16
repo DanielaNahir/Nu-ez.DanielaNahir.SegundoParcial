@@ -14,9 +14,10 @@ namespace Entidades
         /// <summary>
         /// constructor sin parametros
         /// </summary>
-        public Exotico()
+        public Exotico() : base()
         {
-
+            this.animal = EExotico.Hamster;
+            this.alimento = EAlimento.Especial;
         }
 
         //uno menos
@@ -33,7 +34,6 @@ namespace Entidades
             : base(EMascota.Exotico, nombre, edad, nombreDueño, apellidoDueño)
         {
             this.animal = animal;
-            this.alimento = EAlimento.Especial;
         }
         //todos los parametros
         /// <summary>

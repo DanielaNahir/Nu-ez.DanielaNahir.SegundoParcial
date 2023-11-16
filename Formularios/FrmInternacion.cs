@@ -27,6 +27,7 @@ namespace Formularios
         public FrmInternacion(List<Mascota> listaMascotas)
         {
             InitializeComponent();
+            this.CenterToScreen();
             this.listaMascotas = listaMascotas;
             this.mascota = new Perro();
         }

@@ -15,9 +15,11 @@ namespace Entidades
         /// <summary>
         /// Contructos sin parametros
         /// </summary>
-        public Gato()
+        public Gato() : base()
         {
-
+            this.raza = ERazaGato.Europeo;
+            this.castrado = false;
+            this.rasguña = false;
         }
 
         //uno menos

@@ -27,6 +27,7 @@ namespace Formularios
         {
             InitializeComponent();
             this.mascota = new Perro();
+            this.CenterToScreen();
             base.CambiarTextBotonBase("Aceptar");
         }
 

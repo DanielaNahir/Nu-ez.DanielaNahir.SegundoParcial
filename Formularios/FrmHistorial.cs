@@ -18,6 +18,7 @@ namespace Formularios
         public FrmHistorial()
         {
             InitializeComponent();
+            this.CenterToScreen();
             this.lstHistorial.Items.Clear();
         }
 
