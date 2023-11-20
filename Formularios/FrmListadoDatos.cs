@@ -7,6 +7,7 @@ namespace Formularios
     /// </summary>
     public partial class FrmListadoDatos : Form
     {
+        public event delegadoFalla falla;
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -14,6 +15,7 @@ namespace Formularios
         {
             InitializeComponent();
             this.CenterToScreen();
+            
         }
 
         /// <summary>
@@ -130,6 +132,11 @@ namespace Formularios
             {
                 this.lstVisor.Items.Add(st.Mostrar());
             }
+        }
+
+        public void AlertarError(Exception ex)
+        {
+            MessageBox.Show($"Error en la base de datos!\n{ex.Message}");
         }
     }
 }

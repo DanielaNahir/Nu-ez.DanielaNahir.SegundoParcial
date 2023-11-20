@@ -33,10 +33,10 @@ namespace Entidades
                 }
                 base.lector.Close();
             }
-            //catch (Exception ex)
-            //{
-
-            //}
+            catch (Exception ex)
+            {
+                throw new BaseDeDatosSQLException(ex.Message);
+            }
             finally
             {
                 if (base.conexion.State == System.Data.ConnectionState.Open)
@@ -60,10 +60,10 @@ namespace Entidades
                 if (filas == 1)
                     result = true;
             }
-            //catch (Exception ex)
-            //{
-
-            //}
+            catch (Exception ex)
+            {
+                throw new BaseDeDatosSQLException(ex.Message);
+            }
             finally
             {
                 if (base.conexion.State == System.Data.ConnectionState.Open)
@@ -91,10 +91,10 @@ namespace Entidades
                     result = true;
 
             }
-            //catch (Exception ex)
-            //{
-
-            //}
+            catch (Exception ex)
+            {
+                throw new BaseDeDatosSQLException(ex.Message);
+            }
             finally
             {
                 if (base.conexion.State == System.Data.ConnectionState.Open)
@@ -120,10 +120,10 @@ namespace Entidades
                     result = true;
 
             }
-            //catch (Exception ex)
-            //{
-
-            //}
+            catch (Exception ex)
+            {
+                throw new BaseDeDatosSQLException(ex.Message);
+            }
             finally
             {
                 if (base.conexion.State == System.Data.ConnectionState.Open)
