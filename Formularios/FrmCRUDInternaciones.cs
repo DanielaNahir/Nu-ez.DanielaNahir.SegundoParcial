@@ -32,6 +32,8 @@ namespace Formularios
             this.CenterToScreen();
             this.veterinaria = veterinaria;
             this.accesoDatos = new AccesoDatosListaMascotas<Mascota>("listaMascotasInternadas");
+            
+            this.btnCapacidad.Click += new EventHandler(this.CambiarCapacidad);
         }
 
         /// <summary>
@@ -52,6 +54,20 @@ namespace Formularios
         private void FrmInternaciones_Load(object sender, EventArgs e)
         {
             base.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
+            Task tareaCambiarLbl = new Task(() => this.CambiarTextoLBL(this.veterinaria.CapacidadInternaciones));
+        }
+
+        public void CambiarTextoLBL(int capacidad)
+        {
+            if (this.lblCapacidad.InvokeRequired)
+            {
+                delegadoCambiarCapacidad delegado = new delegadoCambiarCapacidad(CambiarTextoLBL);
+                
+                this.lblCapacidad.Invoke(delegado, capacidad);
+            }
+            else
+                this.lblCapacidad.Text = $"Capacidad: {this.veterinaria.ListaMascotasInternadas.Count()}" +
+                    $" de {this.veterinaria.CapacidadInternaciones}";
         }
 
         /// <summary>
@@ -69,15 +85,25 @@ namespace Formularios
 
                 if (frmAgregarMascota.DialogResult == DialogResult.OK)
                 {
-                    this.veterinaria.ListaMascotasInternadas.Add(frmAgregarMascota.mascota);
-                    if (this.accesoDatos.Agregar(frmAgregarMascota.mascota))
-                        MessageBox.Show("Mascota agregada");
-                    this.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
+                    try
+                    {
+                        this.veterinaria.AgregarMascotaInternacion(frmAgregarMascota.mascota);
+
+                        if (this.accesoDatos.Agregar(frmAgregarMascota.mascota))
+                            MessageBox.Show("Mascota agregada");
+                        this.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
+                        Task tareaCambiarLbl = new Task(() => this.CambiarTextoLBL(this.veterinaria.CapacidadInternaciones));
+                    }
+                    catch (EspacioInternacionException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    
                 }
             }
             else
                 MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
-            
+
         }
 
         /// <summary>
@@ -113,6 +139,7 @@ namespace Formularios
                         if (this.accesoDatos.Eliminar(frmMostrarMascota.mascota))
                             MessageBox.Show("Mascota eliminada");
                         base.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
+                        Task tareaCambiarLbl = new Task(() => this.CambiarTextoLBL(this.veterinaria.CapacidadInternaciones));
                     }
                     else
                     {
@@ -122,7 +149,7 @@ namespace Formularios
             }
             else
                 MessageBox.Show("Su usuario no tiene los permisos necesarios para esta operación");
-            
+
         }
 
         /// <summary>
@@ -133,6 +160,18 @@ namespace Formularios
         private void FrmInternaciones_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void CambiarCapacidad(object sender, EventArgs e)
+        {
+            FrmCambiarCapacidad frmCambiarCapacidad = new FrmCambiarCapacidad();
+            frmCambiarCapacidad.ShowDialog();
+
+            if (frmCambiarCapacidad.DialogResult == DialogResult.OK)
+            {
+                this.veterinaria.CapacidadInternaciones = frmCambiarCapacidad.capacidad;
+                Task tareaCambiarLbl = new Task(() => this.CambiarTextoLBL(this.veterinaria.CapacidadInternaciones));
+            }
         }
     }
 }

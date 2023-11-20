@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnCapacidad = new Button();
+            lblCapacidad = new Label();
             SuspendLayout();
             // 
             // btnEliminar
@@ -42,20 +44,49 @@
             // 
             btnModificar.Visible = false;
             // 
-            // FrmInternaciones
+            // btnCapacidad
+            // 
+            btnCapacidad.Location = new Point(290, 245);
+            btnCapacidad.Name = "btnCapacidad";
+            btnCapacidad.Size = new Size(118, 23);
+            btnCapacidad.TabIndex = 7;
+            btnCapacidad.Text = "Cambiar capacidad";
+            btnCapacidad.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            lblCapacidad.AutoSize = true;
+            lblCapacidad.Location = new Point(12, 256);
+            lblCapacidad.Name = "label1";
+            lblCapacidad.Size = new Size(66, 15);
+            lblCapacidad.TabIndex = 8;
+            lblCapacidad.Text = "Capacidad:";
+            // 
+            // FrmCRUDInternaciones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(420, 254);
+            ClientSize = new Size(420, 280);
+            Controls.Add(lblCapacidad);
+            Controls.Add(btnCapacidad);
             Location = new Point(0, 0);
-            Name = "FrmInternaciones";
+            Name = "FrmCRUDInternaciones";
             Text = "FrmInternaciones";
             FormClosing += FrmInternaciones_FormClosing;
             Load += FrmInternaciones_Load;
+            Controls.SetChildIndex(lstVisor, 0);
+            Controls.SetChildIndex(btnEliminar, 0);
+            Controls.SetChildIndex(btnModificar, 0);
+            Controls.SetChildIndex(btnAgregar, 0);
+            Controls.SetChildIndex(btnCapacidad, 0);
+            Controls.SetChildIndex(lblCapacidad, 0);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
+
+        private Button btnCapacidad;
+        private Label lblCapacidad;
     }
 }

@@ -112,7 +112,7 @@ namespace Formularios
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.SerializarXML();
-            DialogResult respuesta = MessageBox.Show("¿Está seguro de salir de la apricación?", "Atención!", MessageBoxButtons.YesNo);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de salir de la aplicación?", "Atención!", MessageBoxButtons.YesNo);
 
             if (respuesta == DialogResult.No)
             {

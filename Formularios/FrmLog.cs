@@ -4,6 +4,8 @@ using System;
 
 namespace Formularios
 {
+    
+
     /// <summary>
     /// Formulario de registro 
     /// Pide introducir un correo y una contraseña
@@ -71,7 +73,8 @@ namespace Formularios
                     cont++;
                     if (usu.correo == this.txtMail.Text && usu.clave == this.txtContraseña.Text)
                     {
-                        this.lblIncorrecto.Visible = false;
+                        //this.lblIncorrecto.Visible = false;
+                        Task tareaMostrarError = Task.Run(this.CambiarVisibilidadLBL);
                         FrmMain frmMain = new FrmMain(usu, this);
                         frmMain.Show();
                         this.txtContraseña.Clear();
@@ -90,5 +93,17 @@ namespace Formularios
                 MessageBox.Show("Rellene todos los campos");
             }
         }
+
+        public void CambiarVisibilidadLBL()
+        {
+            if (this.lblIncorrecto.InvokeRequired)
+            {
+                delegadoMostrarLBL delegado = new delegadoMostrarLBL(CambiarVisibilidadLBL);
+                this.lblIncorrecto.Invoke(delegado);
+            }
+            else
+                this.lblIncorrecto.Visible = false;
+        }
     }
+
 }

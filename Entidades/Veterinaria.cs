@@ -18,6 +18,7 @@ namespace Entidades
         private List<Producto> listaPrecios;
         private List<Turno> listaTurnos;
         private Usuario usuarioAcutal;
+        private int capacidadInternaciones;
 
         #region CONSTRUCTOR
         /// <summary>
@@ -31,11 +32,13 @@ namespace Entidades
             this.listaPrecios = new List<Producto>();
             this.listaTurnos = new List<Turno>();
             this.usuarioAcutal = new Usuario();
+            this.capacidadInternaciones = 10;
             
         }
-        public Veterinaria(Usuario usuarioAcutal) : this()
+        public Veterinaria(Usuario usuarioAcutal, int capacidadInternaciones) : this()
         {
             this.usuarioAcutal = usuarioAcutal;
+            this.capacidadInternaciones = capacidadInternaciones;
         }
         #endregion
 
@@ -89,6 +92,14 @@ namespace Entidades
         {
             get { return this.listaTurnos;}
             set { this.listaTurnos = value;}
+        }
+        /// <summary>
+        /// Propiedad de lectura y escritura del atributo capacidadInternaciones
+        /// </summary>
+        public int CapacidadInternaciones
+        {
+            get { return this.capacidadInternaciones; }
+            set { this.capacidadInternaciones = value; }
         }
         #endregion
 
@@ -341,6 +352,24 @@ namespace Entidades
 
         #endregion
         
+        public bool AgregarMascotaInternacion(Mascota masc)
+        {
+            bool result = false;
+
+            if (this.listaMascotasInternadas.Count() < this.capacidadInternaciones)
+            {
+                this.listaMascotasInternadas.Add(masc);
+                result = true;
+            }
+            else 
+            { 
+                throw new EspacioInternacionException();
+            }
+
+            return result;
+        }
+        
+
         /// <summary>
         /// Compara dos Veterinaria
         /// </summary>
@@ -355,6 +384,7 @@ namespace Entidades
             }
             return result;
         }
+
         public override int GetHashCode()
         {
             return base.GetHashCode();
