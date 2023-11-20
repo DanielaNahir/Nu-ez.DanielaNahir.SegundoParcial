@@ -1,7 +1,7 @@
 # CRUD - Clínica Veterinaria
 #### Sobre mí
 <p>
-Mi nombre es Daniela Nuñez y soy estudiante de programación en la Universidad Tecnológica Nacional. Aquí podran encontrar la aplicación desarrollada para presentar en el Primer Parcial de la materia Laboratorio de Computación II.
+Mi nombre es Daniela Nuñez y soy estudiante de programación en la Universidad Tecnológica Nacional. Aquí podran encontrar la aplicación desarrollada para presentar en el Segund Parcial de la materia Laboratorio de Computación II.
 </p>
 
 #### Resumen del funcionamiento de la aplicación
