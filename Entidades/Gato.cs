@@ -143,7 +143,7 @@ namespace Entidades
         /// <returns>Booleano true son iguales o false si no lo son</returns>
         public static bool operator ==(Gato m1, Gato m2)
         {
-            return m1 == m2 && m1.raza == m2.raza;
+            return (Mascota)m1 == (Mascota)m2 && m1.raza == m2.raza;
         }
         /// <summary>
         /// Sobrecarga del operador != para comparar dos Gatos
