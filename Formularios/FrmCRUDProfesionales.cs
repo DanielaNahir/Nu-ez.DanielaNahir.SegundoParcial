@@ -10,6 +10,7 @@ namespace Formularios
     {
         private Veterinaria veterinaria;
         private AccesoDatosMedicosVeterinarios<MedicoVeterinario> accesoDatos;
+        public event delegadoFalla falla;
 
         /// <summary>
         /// Constructor de la clase
@@ -21,6 +22,7 @@ namespace Formularios
             base.LblText("Profesionales");
             this.CenterToScreen();
             this.veterinaria = veterinaria;
+            this.falla += new delegadoFalla(base.AlertarError);
             this.accesoDatos = new AccesoDatosMedicosVeterinarios<MedicoVeterinario>();
         }
 
@@ -66,10 +68,17 @@ namespace Formularios
                 {
                     if (!this.veterinaria.ListaMedicosVeterinarios.Contains(frmProfesionales.medico))
                     {
-                        this.veterinaria += frmProfesionales.medico;
-                        if (this.accesoDatos.Agregar(frmProfesionales.medico))
-                            MessageBox.Show("Profesional agregado");
-                        base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
+                        try
+                        {
+                            if (this.accesoDatos.Agregar(frmProfesionales.medico))
+                                MessageBox.Show("Profesional agregado");
+                            this.veterinaria += frmProfesionales.medico;
+                            base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
+                        }
+                        catch (BaseDeDatosSQLException ex)
+                        {
+                            this.falla.Invoke(ex);
+                        }
                     }
                     else
                     {
@@ -111,10 +120,17 @@ namespace Formularios
                 {
                     if (this.veterinaria.ListaMedicosVeterinarios.Contains(frm1.medico))
                     {
-                        this.veterinaria -= frm1.medico;
-                        if (this.accesoDatos.Eliminar(frm1.medico))
-                            MessageBox.Show("Profesional eliminado");
-                        base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
+                        try
+                        {
+                            if (this.accesoDatos.Eliminar(frm1.medico))
+                                MessageBox.Show("Profesional eliminado");
+                            this.veterinaria -= frm1.medico;
+                            base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
+                        }
+                        catch (BaseDeDatosSQLException ex)
+                        {
+                            this.falla.Invoke(ex);
+                        }
                     }
                     else
                     {
@@ -154,10 +170,17 @@ namespace Formularios
                 frm1.ShowDialog();
                 if (frm1.DialogResult == DialogResult.OK)
                 {
-                    this.veterinaria.ListaMedicosVeterinarios[indice] = frm1.medico;
-                    if (this.accesoDatos.Modificar(frm1.medico))
-                        MessageBox.Show("Profesional modificado");
-                    base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
+                    try
+                    {
+                        if (this.accesoDatos.Modificar(frm1.medico))
+                            MessageBox.Show("Profesional modificado");
+                        this.veterinaria.ListaMedicosVeterinarios[indice] = frm1.medico;
+                        base.ActualizarVisor(this.veterinaria.ListaMedicosVeterinarios);
+                    }
+                    catch (BaseDeDatosSQLException ex)
+                    {
+                        this.falla.Invoke(ex);
+                    }
                 }
             }
             else

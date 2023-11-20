@@ -92,10 +92,9 @@ namespace Formularios
                     {
                         if (!frmAgregarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotasInternadas))
                         {
-                            this.veterinaria.AgregarMascotaInternacion(frmAgregarMascota.mascota);
-
                             if (this.accesoDatos.Agregar(frmAgregarMascota.mascota))
                                 MessageBox.Show("Mascota agregada");
+                            this.veterinaria.AgregarMascotaInternacion(frmAgregarMascota.mascota);
                             this.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
                             Task tareaCambiarLbl = Task.Run(() => this.CambiarTextoLBL(this.veterinaria.CapacidadInternaciones));
                         }
@@ -149,11 +148,18 @@ namespace Formularios
                 {
                     if (frmMostrarMascota.mascota.VerificarIgualdad(this.veterinaria.ListaMascotasInternadas))
                     {
-                        this.veterinaria.ListaMascotasInternadas.RemoveAt(indice);
-                        if (this.accesoDatos.Eliminar(frmMostrarMascota.mascota))
-                            MessageBox.Show("Mascota eliminada");
-                        base.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
-                        Task tareaCambiarLbl = Task.Run(() => this.CambiarTextoLBL(this.veterinaria.CapacidadInternaciones));
+                        try
+                        {
+                            if (this.accesoDatos.Eliminar(frmMostrarMascota.mascota))
+                                MessageBox.Show("Mascota eliminada");
+                            this.veterinaria.ListaMascotasInternadas.RemoveAt(indice);
+                            base.ActualizarVisor(this.veterinaria.ListaMascotasInternadas);
+                            Task tareaCambiarLbl = Task.Run(() => this.CambiarTextoLBL(this.veterinaria.CapacidadInternaciones));
+                        }
+                        catch (BaseDeDatosSQLException ex)
+                        {
+                            this.falla.Invoke(ex);
+                        }
                     }
                     else
                     {
@@ -176,7 +182,7 @@ namespace Formularios
             this.DialogResult = DialogResult.OK;
         }
 
-        private void CambiarCapacidad(object sender, EventArgs e)
+        private void CambiarCapacidad(object? sender, EventArgs e)
         {
             FrmCambiarCapacidad frmCambiarCapacidad = new FrmCambiarCapacidad();
             frmCambiarCapacidad.ShowDialog();

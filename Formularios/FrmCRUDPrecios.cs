@@ -19,6 +19,7 @@ namespace Formularios
     {
         private Veterinaria veterinaria;
         private AccesoDatosProducto<Producto> accesoDatosProducto;
+        public event delegadoFalla falla;
 
         /// <summary>
         /// Constructor de la clase
@@ -30,6 +31,7 @@ namespace Formularios
             this.CenterToScreen();
             base.LblText("Precios");
             this.veterinaria = veterinaria;
+            this.falla += new delegadoFalla(base.AlertarError);
             this.accesoDatosProducto = new AccesoDatosProducto<Producto>();
         }
 
@@ -70,13 +72,17 @@ namespace Formularios
                 {
                     if (!frmPrecio.producto.VerificarIgualdad(this.veterinaria.ListaProductos))
                     {
-                        this.veterinaria += frmPrecio.producto;
-                        if (this.accesoDatosProducto.Agregar(frmPrecio.producto))
-                            MessageBox.Show("Producto agregado");
-                        else
-                            MessageBox.Show("No pudo agregarse el producto");
-
-                        base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
+                        try
+                        {
+                            if (this.accesoDatosProducto.Agregar(frmPrecio.producto))
+                                MessageBox.Show("Producto agregado");
+                            this.veterinaria += frmPrecio.producto;
+                            base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
+                        }
+                        catch (BaseDeDatosSQLException ex)
+                        {
+                            this.falla.Invoke(ex);
+                        }
                     }
                     else
                     {
@@ -115,11 +121,17 @@ namespace Formularios
                 frmPrecio.ShowDialog();
                 if (frmPrecio.DialogResult == DialogResult.OK)
                 {
-                    this.veterinaria.ListaProductos[indice] = frmPrecio.producto;
-                    if (this.accesoDatosProducto.Modificar(frmPrecio.producto))
-                        MessageBox.Show("Producto modificado");
-
-                    base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
+                    try
+                    {
+                        if (this.accesoDatosProducto.Modificar(frmPrecio.producto))
+                            MessageBox.Show("Producto modificado");
+                        this.veterinaria.ListaProductos[indice] = frmPrecio.producto;
+                        base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
+                    }
+                    catch (BaseDeDatosSQLException ex)
+                    {
+                        this.falla.Invoke(ex);
+                    }
                 }
             }
             else
@@ -156,10 +168,17 @@ namespace Formularios
                 {
                     if (frmPrecio.producto.VerificarIgualdad(this.veterinaria.ListaProductos))
                     {
-                        this.veterinaria -= frmPrecio.producto;
-                        if (this.accesoDatosProducto.Eliminar(frmPrecio.producto))
-                            MessageBox.Show("Producto eliminado");
-                        base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
+                        try
+                        {
+                            if (this.accesoDatosProducto.Eliminar(frmPrecio.producto))
+                                MessageBox.Show("Producto eliminado");
+                            this.veterinaria -= frmPrecio.producto;
+                            base.ActualizarVisor(this.accesoDatosProducto.ObtenerTodosLosDatos());
+                        }
+                        catch (BaseDeDatosSQLException ex)
+                        {
+                            this.falla.Invoke(ex);
+                        }
                     }
                     else
                     {
