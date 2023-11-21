@@ -15,3 +15,6 @@ Todos los datos son guardados en un archivo XML, y todos los datos, con EXEPCION
 </p>
 
 ### Diagrama de las clases
+![ClassDiagramEntidades(1)](https://github.com/DanielaNahir/Nu-ez.DanielaNahir.SegundoParcial/assets/117691675/cf52b06d-eb3f-43e2-92ad-de3cc63de5ee)
+![ClassDiagramEntidades(2)](https://github.com/DanielaNahir/Nu-ez.DanielaNahir.SegundoParcial/assets/117691675/93245e8e-5191-44f2-b2e7-1ca13e903660)
+![ClassDiagramEntidades(3)](https://github.com/DanielaNahir/Nu-ez.DanielaNahir.SegundoParcial/assets/117691675/42228402-843f-497e-ae95-d1d9e9ee100e)
