@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entidades", "Entidades\Enti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formularios", "Formularios\Formularios.csproj", "{11575BB2-42BA-4228-B6DD-FDCD70D59484}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUnits", "TestUnits\TestUnits.csproj", "{ECACBDB4-622A-44EF-AE3B-109F78E1CDC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestUnits", "TestUnits\TestUnits.csproj", "{ECACBDB4-622A-44EF-AE3B-109F78E1CDC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

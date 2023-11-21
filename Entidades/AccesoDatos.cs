@@ -12,7 +12,7 @@ namespace Entidades
         protected SqlConnection conexion;
         protected static string cadena_conexion;
         protected SqlCommand comando;
-        protected SqlDataReader lector;
+        protected SqlDataReader? lector;
 
         static AccesoDatos()
         {
