@@ -73,7 +73,6 @@ namespace Formularios
                     cont++;
                     if (usu.correo == this.txtMail.Text && usu.clave == this.txtContraseña.Text)
                     {
-                        //this.lblIncorrecto.Visible = false;
                         Task tareaMostrarError = Task.Run(this.CambiarVisibilidadLBL);
                         FrmMain frmMain = new FrmMain(usu, this);
                         frmMain.Show();

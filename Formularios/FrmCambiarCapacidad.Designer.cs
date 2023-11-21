@@ -81,6 +81,7 @@
             Controls.Add(btnCambiar);
             Name = "FrmCambiarCapacidad";
             Text = "FrmCambiarCapacidad";
+            Load += FrmCambiarCapacidad_Load;
             ResumeLayout(false);
             PerformLayout();
         }

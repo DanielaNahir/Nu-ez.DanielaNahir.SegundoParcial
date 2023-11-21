@@ -14,6 +14,8 @@ namespace Formularios
         private Usuario usuario;
         private Veterinaria veterinaria;
         private FrmLog fromlog;
+        private event delegadoSaveDialog guardar;
+        private string path;
 
         /// <summary>
         /// Constructor sin parametros
@@ -26,6 +28,8 @@ namespace Formularios
             this.lblHora.Text = DateTime.Now.Date.ToShortDateString();
             this.usuario = new Usuario();
             this.fromlog = new FrmLog();
+            this.guardar += new delegadoSaveDialog(this.GuardarSaveDialog);
+            this.path = Environment.CurrentDirectory + @"..\..\..\..\Veterinaria.xml";
         }
         ///// <summary>
         ///// Constructor que recibe y almacena un parametro de tipo Usuario y el frmLog
@@ -49,7 +53,6 @@ namespace Formularios
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.ActualizarHistorial(this.usuario);
-            //this.DeserializarXML();
             this.MostrarTurnosDelDia();
         }
 
@@ -111,7 +114,7 @@ namespace Formularios
         /// <param name="e"></param>
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.SerializarXML();
+            this.SerializarXML(this.path);
             DialogResult respuesta = MessageBox.Show("¿Está seguro de salir de la aplicación?", "Atención!", MessageBoxButtons.YesNo);
 
             if (respuesta == DialogResult.No)
@@ -192,17 +195,16 @@ namespace Formularios
         /// <summary>
         /// Serializa los datos en el archivo Veterinaria.xml
         /// </summary>
-        private void SerializarXML()
+        private void SerializarXML(string path)
         {
-            string path = Environment.CurrentDirectory;
             try
             {
-                using (XmlTextWriter writer = new XmlTextWriter(path += @"..\..\..\..\Veterinaria.xml", System.Text.Encoding.UTF8))
+                using (XmlTextWriter writer = new XmlTextWriter(path, System.Text.Encoding.UTF8))
                 {
                     XmlSerializer serial = new XmlSerializer(typeof(Veterinaria));
                     serial.Serialize(writer, this.veterinaria);
                 }
-                MessageBox.Show("Datos guardados con exito");
+                //MessageBox.Show("Datos guardados con exito");
             }
             catch (Exception ex)
             {
@@ -236,10 +238,28 @@ namespace Formularios
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void GuardarSaveDialog(object sender, EventArgs e)
         {
+            try
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Archivos XML (*.xml)|*.xml";
+                saveFileDialog.Title = "Guardar copia en XML de los datos";
 
-            this.SerializarXML();
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string path = saveFileDialog.FileName;
+
+                    this.SerializarXML(path);
+
+                    MessageBox.Show("Copia de datos guardada con éxito");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar la copia de datos: " + ex.Message);
+            }
+
         }
 
         /// <summary>
@@ -257,5 +277,11 @@ namespace Formularios
                 }
             }
         }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            this.guardar.Invoke(sender, e);
+        }
+
     }
 }

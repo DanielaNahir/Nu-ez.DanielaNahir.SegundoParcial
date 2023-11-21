@@ -72,7 +72,7 @@
             // 
             btnHistorial.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnHistorial.FlatStyle = FlatStyle.Popup;
-            btnHistorial.Location = new Point(344, 314);
+            btnHistorial.Location = new Point(397, 317);
             btnHistorial.Name = "btnHistorial";
             btnHistorial.Size = new Size(84, 23);
             btnHistorial.TabIndex = 2;
@@ -201,11 +201,11 @@
             btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnGuardar.Image = Properties.Resources.pngwing_com;
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.Location = new Point(434, 310);
+            btnGuardar.Location = new Point(18, 310);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(53, 30);
+            btnGuardar.Size = new Size(101, 30);
             btnGuardar.TabIndex = 15;
-            btnGuardar.Text = "XML";
+            btnGuardar.Text = "Guardar XML";
             btnGuardar.TextAlign = ContentAlignment.MiddleRight;
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;

@@ -63,12 +63,18 @@ namespace Formularios
             if (this.lblCapacidad.InvokeRequired)
             {
                 delegadoCambiarCapacidad delegado = new delegadoCambiarCapacidad(CambiarTextoLBL);
-                
+
                 this.lblCapacidad.Invoke(delegado, capacidad);
             }
             else
+            {
                 this.lblCapacidad.Text = $"Capacidad: {this.veterinaria.ListaMascotasInternadas.Count()}" +
                     $" de {this.veterinaria.CapacidadInternaciones}";
+                if(this.veterinaria.ListaMascotasInternadas.Count() == this.veterinaria.CapacidadInternaciones)
+                    this.lblCapacidad.BackColor = Color.Red;
+                else
+                    this.lblCapacidad.BackColor = Color.Transparent;
+            }
         }
 
         

@@ -28,7 +28,7 @@ namespace Formularios
             }
             catch
             {
-                MessageBox.Show("Ingrese una edad correcto");
+                MessageBox.Show("Ingrese una capacidad correcta");
             }
 
         }
@@ -36,6 +36,11 @@ namespace Formularios
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void FrmCambiarCapacidad_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

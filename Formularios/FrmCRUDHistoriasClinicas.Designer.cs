@@ -139,11 +139,11 @@
             Name = "FrmCRUDHistoriasClinicas";
             FormClosing += FrmHistoriasClinicasMascotas_FormClosing;
             Load += FrmHistoriasClinicasMascotas_Load;
+            Controls.SetChildIndex(grpBoxOrdenar, 0);
             Controls.SetChildIndex(lstVisor, 0);
             Controls.SetChildIndex(btnEliminar, 0);
             Controls.SetChildIndex(btnModificar, 0);
             Controls.SetChildIndex(btnAgregar, 0);
-            Controls.SetChildIndex(grpBoxOrdenar, 0);
             grpBoxOrdenar.ResumeLayout(false);
             grpBoxOrdenar.PerformLayout();
             grpBoxManera.ResumeLayout(false);
