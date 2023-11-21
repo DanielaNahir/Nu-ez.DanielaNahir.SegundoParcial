@@ -11,7 +11,7 @@ La aplicación fue hecha para la administración y organización de una veterian
 
 #### ¡Aclaración!
 <p>
-Todos los datos son guardados en un archivo XML, y todos los datos, con EXEPCION de los turno, son guardados en una base de datos SQL.
+Todos los datos son guardados en un archivo XML, y todos los datos, con EXEPCION de los turno, son guardados en una base de datos SQL. La base de datos y el archivo se complementan para que la aplicación funcione de forma optima, por tal razón no es posible exportar archivos XML (OpenFileDialog), para evitar conflictos con la base de datos.
 </p>
 
 ### Diagrama de las clases
