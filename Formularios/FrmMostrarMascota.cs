@@ -14,7 +14,7 @@ namespace Formularios
     /// <summary>
     /// Clase que representa un formulario que muestra un objeto de tipo mascota
     /// </summary>
-    public partial class FrmMostrarMascota : FrmMostrarObjeto
+    public partial class FrmMostrarMascota : FrmMostrarObjeto, IParsearEnumerados
     {
         public Mascota mascota;
         private bool perro;
@@ -392,6 +392,11 @@ namespace Formularios
             this.grpBoxRasguña.Visible = false;
             this.grpBoxAnimal.Visible = true;
             this.grpBoxAlimentacion.Visible = true;
+        }
+
+        private void FrmMostrarMascota_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

@@ -5,3 +5,5 @@ public delegate void delegadoFalla(Exception ex);
 public delegate void delegadoSaveDialog(object sender, EventArgs e);
 
 public delegate void delegadoCambiarCapacidad(int capacidad);
+
+public delegate void delegadoMensaje(string mensaje);

@@ -479,8 +479,11 @@
             Controls.Add(radBtnPerro);
             Controls.Add(lblNombreDueño);
             Controls.Add(txtNombreDueño);
+            Location = new Point(0, 0);
             Name = "FrmMostrarMascota";
             Text = "FrmMostrarMascota";
+            Load += FrmMostrarMascota_Load;
+            Controls.SetChildIndex(lblNombre, 0);
             Controls.SetChildIndex(txtNombre, 0);
             Controls.SetChildIndex(btnAceptar, 0);
             Controls.SetChildIndex(txtNombreDueño, 0);
