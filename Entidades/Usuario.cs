@@ -116,8 +116,19 @@
             }
         }
 
-        public bool AccesoEliminar { get { return this.accesoEliminar; }} 
-        public bool AccesoCrear { get { return this.accesoCrear; } } 
+        /// <summary>
+        /// Propiedad de lectura del atributo accesoEliminar
+        /// </summary>
+        public bool AccesoEliminar { get { return this.accesoEliminar; }}
+
+        /// <summary>
+        /// Propiedad de lectura del atributo accesoCrear
+        /// </summary>
+        public bool AccesoCrear { get { return this.accesoCrear; } }
+
+        /// <summary>
+        /// Propiedad de lectura del atributo accesoModificar
+        /// </summary>
         public bool AccesoModificar { get { return this.accesoModificar; } } 
 
         #endregion

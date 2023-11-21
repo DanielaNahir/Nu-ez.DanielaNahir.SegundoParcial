@@ -133,6 +133,10 @@ namespace Formularios
             }
         }
 
+        /// <summary>
+        /// Muestra un cuadro de mensaje de alerta con el mensaje de error proporcionado por la excepción.
+        /// </summary>
+        /// <param name="ex">La excepción que contiene el mensaje de error a mostrar.</param>
         public void AlertarError(Exception ex)
         {
             MessageBox.Show(ex.Message);

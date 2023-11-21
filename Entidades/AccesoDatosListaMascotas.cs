@@ -9,13 +9,26 @@ using System.Threading.Tasks.Dataflow;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase genérica que proporciona acceso a datos para operaciones CRUD en una lista de mascotas.
+    /// </summary>
+    /// <typeparam name="T">Tipo de mascota que hereda de la clase base Mascota.</typeparam>
     public class AccesoDatosListaMascotas<T> : AccesoDatos, IParsearEnumerados, IBaseDeDatos<T> where T : Mascota
     {
         public string tabla;
+        /// <summary>
+        /// Constructor de la clase <see cref="AccesoDatosListaMascotas{T}"/>.
+        /// </summary>
+        /// <param name="tabla">Nombre de la tabla en la base de datos.</param>
         public AccesoDatosListaMascotas(string tabla) : base()
         {
             this.tabla = tabla;
         }
+        
+        /// <summary>
+        /// Obtiene todos los datos de la lista de mascotas almacenados en la base de datos.
+        /// </summary>
+        /// <returns>Lista de mascotas.</returns>
         public List<T> ObtenerTodosLosDatos()
         {
             List<T> lista = new List<T>();
@@ -96,6 +109,12 @@ namespace Entidades
 
             return lista;
         }
+        
+        /// <summary>
+        /// Agrega una nueva mascota a la base de datos.
+        /// </summary>
+        /// <param name="masc">Mascota a agregar.</param>
+        /// <returns>True si la operación fue exitosa, de lo contrario, false.</returns>
         public bool Agregar(T masc) 
         {
             bool result = false;
@@ -141,6 +160,12 @@ namespace Entidades
 
             return result;
         }
+        
+        /// <summary>
+        /// Modifica la información de una mascota en la base de datos.
+        /// </summary>
+        /// <param name="masc">Mascota con la información actualizada.</param>
+        /// <returns>True si la operación fue exitosa, de lo contrario, false.</returns>
         public bool Modificar(T masc)
         {
             bool result = false;
@@ -198,6 +223,12 @@ namespace Entidades
 
             return result;
         }
+
+        /// <summary>
+        /// Elimina una mascota de la base de datos.
+        /// </summary>
+        /// <param name="masc">Mascota a eliminar.</param>
+        /// <returns>True si la operación fue exitosa, de lo contrario, false.</returns>
         public bool Eliminar(T masc)
         {
             bool result = false;
@@ -229,6 +260,10 @@ namespace Entidades
             return result;
         }
 
+        /// <summary>
+        /// Parsea la raza de un perro desde el lector de datos.
+        /// </summary>
+        /// <returns>Raza del perro.</returns>
         public ERazaPerro ParsearRazaPerro()
         {
             ERazaPerro raza = new ERazaPerro();
@@ -255,6 +290,11 @@ namespace Entidades
             }
             return raza;
         }
+
+        /// <summary>
+        /// Parsea la raza de un gato desde el lector de datos.
+        /// </summary>
+        /// <returns>Raza del gato.</returns>
         public ERazaGato ParsearRazaGato()
         {
             ERazaGato raza = new ERazaGato();
@@ -279,6 +319,10 @@ namespace Entidades
             return raza;
         }
 
+        /// <summary>
+        /// Parsea la raza de un exótico desde el lector de datos.
+        /// </summary>
+        /// <returns>Raza del exótico.</returns>
         public EExotico ParsearExotico()
         {
             EExotico raza = new EExotico();
@@ -303,6 +347,10 @@ namespace Entidades
             return raza;
         }
 
+        /// <summary>
+        /// Parsea la alimentación desde el lector de datos.
+        /// </summary>
+        /// <returns>Alimentación de la mascota.</returns>
         public EAlimento ParsearAlimentacion()
         {
             EAlimento raza = new EAlimento();

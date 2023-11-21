@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase base para el acceso a datos utilizando SqlConnection y SqlCommand.
+    /// </summary>
     public class AccesoDatos
     {
         protected SqlConnection conexion;
@@ -14,15 +17,26 @@ namespace Entidades
         protected SqlCommand comando;
         protected SqlDataReader? lector;
 
+        /// <summary>
+        /// Inicializa la cadena de conexión estática desde los recursos de la aplicación.
+        /// </summary>
         static AccesoDatos()
         {
             AccesoDatos.cadena_conexion = Properties.Resources.conexion;
         }
+        /// <summary>
+        /// Constructor predeterminado de la clase
+        /// </summary>
         public AccesoDatos()
         {
             this.comando = new SqlCommand();
             this.conexion = new SqlConnection(AccesoDatos.cadena_conexion);
         }
+
+        /// <summary>
+        /// Realiza una prueba de conexión a la base de datos.
+        /// </summary>
+        /// <returns>Devuelve true si la conexión fue exitosa, de lo contrario, lanza una excepción.</returns>
 
         public bool PruebaConexion()
         {

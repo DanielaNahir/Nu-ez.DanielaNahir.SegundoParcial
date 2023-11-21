@@ -105,9 +105,7 @@ namespace Formularios
                                                 int.Parse(this.txtSueldo.Text));
             }
             else
-            {
                 return;
-            }
 
             this.DialogResult = DialogResult.OK;
         }

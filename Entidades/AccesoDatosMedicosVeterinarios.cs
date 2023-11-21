@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase para acceder y manipular datos de médicos veterinarios en una base de datos.
+    /// </summary>
+    /// <typeparam name="T">Medico Veterinario.</typeparam>
     public class AccesoDatosMedicosVeterinarios<T> : AccesoDatos, IBaseDeDatos<T> where T : MedicoVeterinario
     {
+        /// <summary>
+        /// Agrega un médico veterinario a la base de datos.
+        /// </summary>
+        /// <param name="med">Médico veterinario a agregar.</param>
+        /// <returns>True si se agrega correctamente, false en caso contrario.</returns>
         public bool Agregar(T med)
         {
             bool result = false;
@@ -38,6 +47,11 @@ namespace Entidades
             return result;
         }
 
+        /// <summary>
+        /// Elimina un médico veterinario de la base de datos.
+        /// </summary>
+        /// <param name="med">Médico veterinario a eliminar.</param>
+        /// <returns>True si se elimina correctamente, false en caso contrario.</returns>
         public bool Eliminar(T med)
         {
             bool result = false;
@@ -68,6 +82,9 @@ namespace Entidades
             return result;
         }
 
+        /// <summary>
+        /// Obtiene todos los médicos veterinarios almacenados en la base de datos.
+        /// </summary>
         public List<T> ObtenerTodosLosDatos()
         {
             List<T> lista = new List<T>();
@@ -105,6 +122,11 @@ namespace Entidades
             return lista;
         }
 
+        /// <summary>
+        /// Modifica un médico veterinario en la base de datos.
+        /// </summary>
+        /// <param name="med">Médico veterinario a modificar.</param>
+        /// <returns>True si se modifica correctamente, false en caso contrario.</returns>
         public bool Modificar(T med)
         {
             bool result = false;
@@ -140,6 +162,10 @@ namespace Entidades
             return result;
         }
 
+        /// <summary>
+        /// Parsea la especialidad de un médico desde el lector de datos.
+        /// </summary>
+        /// <returns>Especialidad del médico.</returns>
         public EEspecialidad ParsearEspecialidad()
         {
             EEspecialidad esp = new EEspecialidad();

@@ -37,7 +37,7 @@ namespace Formularios
         ///// <param name="usuario"></param>
         public FrmMain(Usuario usuario, FrmLog frmlog) : this()
         {
-            this.DeserializarXML();
+            this.DeserializarXML(this.path);
             this.usuario = usuario;
             this.veterinaria.UsuarioActual = usuario;
             this.fromlog = frmlog;
@@ -195,6 +195,7 @@ namespace Formularios
         /// <summary>
         /// Serializa los datos en el archivo Veterinaria.xml
         /// </summary>
+        /// <param name="path">path del archivo a serializar</param>
         private void SerializarXML(string path)
         {
             try
@@ -215,12 +216,12 @@ namespace Formularios
         /// <summary>
         /// Deserializa los datos del archivo Veterinaria.xml sore la aplicacion
         /// </summary>
-        private void DeserializarXML()
+        /// <param name="path">path del archivo a serializar</param>
+        private void DeserializarXML(string path)
         {
-            string path = Environment.CurrentDirectory;
             try
             {
-                using (XmlTextReader reader = new XmlTextReader(path += @"..\..\..\..\Veterinaria.xml"))
+                using (XmlTextReader reader = new XmlTextReader(path))
                 {
                     XmlSerializer serial = new XmlSerializer(typeof(Veterinaria));
                     this.veterinaria = (Veterinaria)serial.Deserialize(reader);
@@ -278,6 +279,11 @@ namespace Formularios
             }
         }
 
+        /// <summary>
+        /// Maneja el evento del click sobre el boton guardar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             this.guardar.Invoke(sender, e);

@@ -1,4 +1,7 @@
 ﻿
+/// <summary>
+/// Enumeración que representa los tipos de mascotas.
+/// </summary>
 public enum EMascota
 {
     Perro,
@@ -6,6 +9,9 @@ public enum EMascota
     Exotico
 }
 
+/// <summary>
+/// Enumeración que representa las razas de perros.
+/// </summary>
 public enum ERazaPerro
 {
     Mestizo,
@@ -15,6 +21,9 @@ public enum ERazaPerro
     Golden
 }
 
+/// <summary>
+/// Enumeración que representa las razas de gatos.
+/// </summary>
 public enum ERazaGato
 {
     Persa,
@@ -23,6 +32,9 @@ public enum ERazaGato
     Siberiano
 }
 
+/// <summary>
+/// Enumeración que representa los tipos de mascotas exóticas.
+/// </summary>
 public enum EExotico
 {
     Cobayo,
@@ -31,6 +43,9 @@ public enum EExotico
     Tortuga
 }
 
+/// <summary>
+/// Enumeración que representa los tipos de alimentos para mascotas exóticas.
+/// </summary>
 public enum EAlimento
 {
     Especial,
@@ -38,6 +53,9 @@ public enum EAlimento
     Vegetales
 }
 
+/// <summary>
+/// Enumeración que representa las especialidades de los médicos veterinarios.
+/// </summary>
 public enum EEspecialidad
 {
     Clinico,

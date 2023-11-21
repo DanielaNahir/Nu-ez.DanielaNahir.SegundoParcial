@@ -8,9 +8,16 @@ using Entidades;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase para acceder y manipular datos de productos en una base de datos.
+    /// </summary>
+    /// <typeparam name="T">producto</typeparam>
     public class AccesoDatosProducto<T>: AccesoDatos, IBaseDeDatos<T> where T : Producto
     {
-
+        /// <summary>
+        /// Obtiene todos los productos almacenados en la base de datos.
+        /// </summary>
+        /// <returns>Lista de productos.</returns>
         public List<T> ObtenerTodosLosDatos()
         {
             List<T> lista = new List<T>();
@@ -45,6 +52,12 @@ namespace Entidades
 
             return lista;
         }
+
+        /// <summary>
+        /// Agrega un producto a la base de datos.
+        /// </summary>
+        /// <param name="prod">Producto a agregar.</param>
+        /// <returns>True si se agrega correctamente, false en caso contrario.</returns>
         public bool Agregar(T prod)
         {
             bool result = false;
@@ -72,6 +85,12 @@ namespace Entidades
 
             return result;
         }
+
+        /// <summary>
+        /// Modifica un producto en la base de datos.
+        /// </summary>
+        /// <param name="prod">Producto a modificar.</param>
+        /// <returns>True si se modifica correctamente, false en caso contrario.</returns>
         public bool Modificar(T prod)
         {
             bool result = false;
@@ -103,6 +122,12 @@ namespace Entidades
 
             return result;
         }
+
+        /// <summary>
+        /// Elimina un producto de la base de datos.
+        /// </summary>
+        /// <param name="prod">Producto a eliminar.</param>
+        /// <returns>True si se elimina correctamente, false en caso contrario.</returns>
         public bool Eliminar(T prod)
         {
             bool result = false;

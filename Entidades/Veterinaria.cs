@@ -13,7 +13,7 @@ namespace Entidades
     public class Veterinaria
     {
         private List<Mascota> listaMascotas;
-        private List<Mascota> listaMascotasInternadas; // agregar capacidad limite para la cant de mascotas internadas
+        private List<Mascota> listaMascotasInternadas;
         private List<MedicoVeterinario> listaMedicosVeterinarios;
         private List<Producto> listaPrecios;
         private List<Turno> listaTurnos;
@@ -35,6 +35,12 @@ namespace Entidades
             this.capacidadInternaciones = 10;
             
         }
+
+        /// <summary>
+        /// Constructor de la clase con parámetros.
+        /// </summary>
+        /// <param name="usuarioActual">Usuario actual de la veterinaria.</param>
+        /// <param name="capacidadInternaciones">Capacidad máxima de internaciones.</param>
         public Veterinaria(Usuario usuarioAcutal, int capacidadInternaciones) : this()
         {
             this.usuarioAcutal = usuarioAcutal;
@@ -351,7 +357,13 @@ namespace Entidades
 
 
         #endregion
-        
+
+
+        /// <summary>
+        /// Agrega una mascota a la lista de mascotas internadas.
+        /// </summary>
+        /// <param name="masc">Mascota a agregar.</param>
+        /// <returns>True si se agrega correctamente, False si no hay espacio.</returns>
         public bool AgregarMascotaInternacion(Mascota masc)
         {
             bool result = false;
@@ -368,13 +380,13 @@ namespace Entidades
 
             return result;
         }
-        
+
 
         /// <summary>
-        /// Compara dos Veterinaria
+        /// Compara dos instancias de Veterinaria.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns>Booleano true son iguales o false si no lo son</returns>
+        /// <param name="obj">Objeto a comparar.</param>
+        /// <returns>True si son iguales, False si no lo son.</returns>
         public override bool Equals(object? obj)
         {
             bool result = false;

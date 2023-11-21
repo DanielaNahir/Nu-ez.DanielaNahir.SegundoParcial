@@ -73,7 +73,7 @@ namespace Formularios
                     cont++;
                     if (usu.correo == this.txtMail.Text && usu.clave == this.txtContraseña.Text)
                     {
-                        Task tareaMostrarError = Task.Run(this.CambiarVisibilidadLBL);
+                        
                         FrmMain frmMain = new FrmMain(usu, this);
                         frmMain.Show();
                         this.txtContraseña.Clear();
@@ -83,7 +83,8 @@ namespace Formularios
                     }
                     else if (cont == this.usuarios.Count())
                     {
-                        this.lblIncorrecto.Visible = true;
+                        //this.lblIncorrecto.Visible = true;
+                        Task tareaMostrarError = Task.Run(this.CambiarVisibilidadLBL);
                     }
                 }
             }
@@ -93,6 +94,11 @@ namespace Formularios
             }
         }
 
+        /// <summary>
+        /// Cambia la visibilidad del control de 'lblIncorrecto' a visible o no visible.
+        /// Este método es seguro para la ejecución desde subprocesos diferentes al principal.
+        /// </summary>
+
         public void CambiarVisibilidadLBL()
         {
             if (this.lblIncorrecto.InvokeRequired)
@@ -101,7 +107,7 @@ namespace Formularios
                 this.lblIncorrecto.Invoke(delegado);
             }
             else
-                this.lblIncorrecto.Visible = false;
+                this.lblIncorrecto.Visible = !(this.lblIncorrecto.Visible);
         }
     }
 

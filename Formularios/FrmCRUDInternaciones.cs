@@ -188,6 +188,11 @@ namespace Formularios
             this.DialogResult = DialogResult.OK;
         }
 
+        /// <summary>
+        /// Abre un formulario para cambiar la capacidad de internaciones de la veterinaria
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CambiarCapacidad(object? sender, EventArgs e)
         {
             FrmCambiarCapacidad frmCambiarCapacidad = new FrmCambiarCapacidad();
