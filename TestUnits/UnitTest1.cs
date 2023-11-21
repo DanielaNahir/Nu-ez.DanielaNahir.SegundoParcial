@@ -37,18 +37,30 @@ namespace TestUnits
             Veterinaria v = new Veterinaria();
             v.CapacidadInternaciones = 1;
 
-            Exotico gato1 = new Exotico("juan", 5, "ll", "pp", EExotico.Cobayo,EAlimento.Especial);
-            Gato gato2 = new Gato("lolo", 4, "jj", "kk", ERazaGato.Persa, true);
+            Exotico ex = new Exotico("juan", 5, "ll", "pp", EExotico.Cobayo, EAlimento.Especial);
+            Gato gato = new Gato("lolo", 4, "jj", "kk", ERazaGato.Persa, true);
 
             try
             {
-                v += gato1;
-                v += gato2;
+                v += ex;
+                v += gato;
             }
             catch (Exception e)
             {
                 Assert.IsInstanceOfType(e, typeof(EspacioInternacionException));
             }
+        }
+
+        [TestMethod]
+        public void VerificarDiferenciaMascotas()
+        {
+            Veterinaria v = new Veterinaria();
+            v.CapacidadInternaciones = 1;
+
+            Exotico ex = new Exotico("lolo", 4, "jj", "kk", EExotico.Cobayo, EAlimento.Especial);
+            Gato gato = new Gato("lolo", 4, "jj", "kk", ERazaGato.Persa, true);
+
+            Assert.IsFalse(ex == gato);
         }
     }
 }
