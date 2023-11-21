@@ -1,133 +1,203 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Entidades.Exotico">
-    <Position X="4.25" Y="0.5" Width="2" />
-    <InheritanceLine Type="Entidades.Mascota" FixedToPoint="true">
-      <Path>
-        <Point X="2.297" Y="0.5" />
-        <Point X="2.297" Y="0.125" />
-        <Point X="5.188" Y="0.125" />
-        <Point X="5.188" Y="0.5" />
-      </Path>
-    </InheritanceLine>
+    <Position X="8" Y="8.25" Width="7.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAEgBAAAQAAAAAgAIAAIAAAAAAAIiA=</HashCode>
       <FileName>Exotico.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Mascota">
-    <Position X="0.5" Y="0.5" Width="3.5" />
+    <Position X="9.25" Y="0.5" Width="6" />
     <TypeIdentifier>
       <HashCode>AAAgBAEAIAQAAACEgAQAgQAAAAAAAoABQAoAAUAAIiA=</HashCode>
       <FileName>Mascota.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Gato">
-    <Position X="12.75" Y="0.5" Width="2" />
-    <InheritanceLine Type="Entidades.Mascota" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="1.438" Y="0.5" />
-        <Point X="1.438" Y="0.125" />
-        <Point X="13.75" Y="0.125" />
-        <Point X="13.75" Y="0.5" />
-      </Path>
-    </InheritanceLine>
+    <Position X="16" Y="8.25" Width="8" />
     <TypeIdentifier>
       <HashCode>QAQAAEAkAAAAIAAEgAAAAQAAAAAAAIAAAAAAAAAAIiA=</HashCode>
       <FileName>Gato.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Perro">
-    <Position X="8.5" Y="0.5" Width="2" />
-    <InheritanceLine Type="Entidades.Mascota" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="3.156" Y="0.5" />
-        <Point X="3.156" Y="0.125" />
-        <Point X="9.438" Y="0.125" />
-        <Point X="9.438" Y="0.5" />
-      </Path>
-    </InheritanceLine>
+    <Position X="0.5" Y="8.25" Width="6.75" />
     <TypeIdentifier>
       <HashCode>EAQAAAAEAAAAAAAEgAAAAQAAAEAAAIBAAAAAAAAAIiA=</HashCode>
       <FileName>Perro.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Entidades.AccesoDatos">
+    <Position X="4.75" Y="14.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgEAAAAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>AccesoDatos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.AccesoDatosListaMascotas&lt;T&gt;">
+    <Position X="4.5" Y="18.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAQQAQAIAAACAAIAAAAAAAAAAAAAECAAAAAAAA=</HashCode>
+      <FileName>AccesoDatosListaMascotas.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Entidades.AccesoDatosMedicosVeterinarios&lt;T&gt;">
+    <Position X="8.5" Y="14.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAQAAAAACAAQAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>AccesoDatosMedicosVeterinarios.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Entidades.AccesoDatosProducto&lt;T&gt;">
+    <Position X="7.75" Y="18.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAQAAAAACAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>AccesoDatosProducto.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Entidades.EspacioInternacionException">
+    <Position X="10.75" Y="18.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excepciones.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.BaseDeDatosSQLException">
+    <Position X="9.5" Y="20.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excepciones.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.ErrorConexionException">
+    <Position X="11.25" Y="17.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excepciones.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Entidades.MedicoVeterinario">
-    <Position X="15" Y="0.5" Width="2.75" />
+    <Position X="14" Y="17.25" Width="5.5" />
     <TypeIdentifier>
       <HashCode>AAEABAEAAAQAAACEgAAAgAAAAAAAAIAAAAgAQAABAmA=</HashCode>
       <FileName>MedicoVeterinario.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Producto">
-    <Position X="7" Y="5" Width="2.25" />
+    <Position X="8" Y="25.75" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAACEgAAAgQAQAAAAEIAAAAAAAAAAAiA=</HashCode>
       <FileName>Producto.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Turno">
-    <Position X="4.5" Y="4.75" Width="2" />
+    <Position X="2.75" Y="25.25" Width="5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQQAAAEEggAAAAIAAAAAAIAAAAAAAAAAAiA=</HashCode>
       <FileName>Turno.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Usuario">
-    <Position X="12.25" Y="5.25" Width="2.25" />
+    <Position X="17.5" Y="25.25" Width="5.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQBAACEAQAAhAAAAIQAAACAAAAQAAAAEAA=</HashCode>
+      <HashCode>AAAAAAAQAAQBAACEAUCAhAAQAIQAAACAAECQAAAAEAA=</HashCode>
       <FileName>Usuario.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Veterinaria">
-    <Position X="9.5" Y="4.5" Width="2.5" />
+    <Position X="11.75" Y="25.25" Width="4.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEwAEAgABAAIAAQIAgAAZAIACAAiA=</HashCode>
+      <HashCode>AAAAAAAAAAAABAAMxAEAgABAAIAAQIAgIAZAMACAAiA=</HashCode>
       <FileName>Veterinaria.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Interface Name="Entidades.IBaseDeDatos&lt;T&gt;">
+    <Position X="14.75" Y="15.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAQAAQAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>IBaseDeDatos.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Entidades.IParsearEnumerados">
+    <Position X="12" Y="15.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAIAAAAAAIAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>IParsearEnumerados.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="EMascota">
-    <Position X="0.5" Y="6.5" Width="1.5" />
+    <Position X="18" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enumerados.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ERazaPerro">
-    <Position X="10.75" Y="0.5" Width="1.5" />
+    <Position X="16.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAIAAEAAAA=</HashCode>
       <FileName>Enumerados.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ERazaGato">
-    <Position X="10.75" Y="2.75" Width="1.5" />
+    <Position X="18" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAUAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAE=</HashCode>
       <FileName>Enumerados.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="EExotico">
-    <Position X="6.5" Y="0.5" Width="1.5" />
+    <Position X="19.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAQAAAABQAAAAA=</HashCode>
       <FileName>Enumerados.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="EAlimento">
-    <Position X="6.5" Y="2.25" Width="1.5" />
+    <Position X="16.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAACAAMAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enumerados.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="EEspecialidad">
-    <Position X="18" Y="0.5" Width="1.25" />
+  <Delegate Name="delegadoMostrarLBL">
+    <Position X="9.75" Y="22" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAIAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAA=</HashCode>
-      <FileName>Enumerados.cs</FileName>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Delegados.cs</FileName>
     </TypeIdentifier>
-  </Enum>
+  </Delegate>
+  <Delegate Name="delegadoFalla">
+    <Position X="6.25" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Delegados.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="delegadoSaveDialog">
+    <Position X="8" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Delegados.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="delegadoCambiarCapacidad">
+    <Position X="4.5" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Delegados.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="delegadoMensaje">
+    <Position X="7.75" Y="20.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Delegados.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
