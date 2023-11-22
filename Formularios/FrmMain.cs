@@ -41,6 +41,7 @@ namespace Formularios
             this.usuario = usuario;
             this.veterinaria.UsuarioActual = usuario;
             this.fromlog = frmlog;
+            this.lblPerfil.Text = this.usuario.perfil;
             this.lblNombre.Text = $"Usuario: {this.veterinaria.UsuarioActual.nombre} {this.veterinaria.UsuarioActual.apellido}";
         }
 

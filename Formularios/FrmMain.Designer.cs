@@ -43,6 +43,7 @@
             btnPrecios = new Button();
             groupBox2 = new GroupBox();
             btnGuardar = new Button();
+            lblPerfil = new Label();
             groupBox1.SuspendLayout();
             groupBoxHistorias.SuspendLayout();
             groupBoxTurnos.SuspendLayout();
@@ -210,11 +211,22 @@
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
+            // lblPerfil
+            // 
+            lblPerfil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblPerfil.AutoSize = true;
+            lblPerfil.Location = new Point(12, 24);
+            lblPerfil.Name = "lblPerfil";
+            lblPerfil.Size = new Size(34, 15);
+            lblPerfil.TabIndex = 16;
+            lblPerfil.Text = "Perfil";
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(499, 347);
+            Controls.Add(lblPerfil);
             Controls.Add(btnGuardar);
             Controls.Add(groupBox2);
             Controls.Add(groupBoxTurnos);
@@ -253,5 +265,6 @@
         private Button btnInternaciones;
         private GroupBox groupBox2;
         private Button btnGuardar;
+        private Label lblPerfil;
     }
 }
