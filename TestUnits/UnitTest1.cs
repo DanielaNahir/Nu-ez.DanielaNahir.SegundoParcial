@@ -32,6 +32,7 @@ namespace TestUnits
         }
 
         [TestMethod]
+        [ExpectedException(typeof(EspacioInternacionException))]
         public void AgregarInternacionExeption()
         {
             Veterinaria v = new Veterinaria();
@@ -40,15 +41,9 @@ namespace TestUnits
             Exotico ex = new Exotico("juan", 5, "ll", "pp", EExotico.Cobayo, EAlimento.Especial);
             Gato gato = new Gato("lolo", 4, "jj", "kk", ERazaGato.Persa, true);
 
-            try
-            {
-                v += ex;
-                v += gato;
-            }
-            catch (Exception e)
-            {
-                Assert.IsInstanceOfType(e, typeof(EspacioInternacionException));
-            }
+            v.AgregarMascotaInternacion(ex);
+            v.AgregarMascotaInternacion(gato);
+            
         }
 
         [TestMethod]
